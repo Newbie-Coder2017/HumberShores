@@ -297,7 +297,7 @@ label {
 footer {
     margin-top: 30px;
     background-color: #3972B2;
-    margin-bottom: 3em;
+    margin-bottom: 0;
 }
 .social {
     font-size: 2rem;
