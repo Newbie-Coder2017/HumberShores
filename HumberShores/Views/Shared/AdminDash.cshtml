@@ -1,0 +1,17 @@
+﻿<aside class="col-sm-3 adminDash serviceBtn shadow">
+    <ul class="nav nav-pills nav-stacked">
+        <li><h3>Admin Dashboard</h3></li>
+        <li class="serviceBtn"><a class="btn btn-default shadow" href="@Url.Action("AdminHome", "Home")">Admin Home</a></li>
+        @if (User.IsInRole("Super Admin"))
+        {
+        <li class="serviceBtn"><a class="btn btn-default shadow" href="#">User Maintenance</a></li>
+        }
+        <li class="serviceBtn"><a class="btn btn-default shadow" href="@Url.Action("Index", "announcements")">Announcements</a></li>
+        <li class="serviceBtn"><a class="btn btn-default shadow" href="@Url.Action("Index", "appointments")">Appointments</a></li>
+        <li class="serviceBtn"><a class="btn btn-default shadow" href="@Url.Action("Index", "departments")">Department Map</a></li>
+        <li class="serviceBtn"><a class="btn btn-default shadow" href="#">Donations</a></li>
+        <li class="serviceBtn"><a class="btn btn-default shadow" href="@Url.Action("Logout", "Home")">Sign Out</a></li>
+    </ul>
+</aside>
+
+

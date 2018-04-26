@@ -1,0 +1,113 @@
+﻿@model HumberShores.Models.department
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_headFoot.cshtml";
+}
+
+@section Styles {
+    <link href="~/Content/map.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/department.css" rel="stylesheet" type="text/css" />
+}
+<div class="container">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+        @if (User.IsInRole("User"))
+        {
+            <li><a href="@Url.Action("UserHome", "Home")">User Home</a></li>
+        }
+        else if (User.IsInRole("Admin") || User.IsInRole("Super Admin"))
+        {
+            <li><a href="@Url.Action("AdminHome", "Home")">Administrator Home</a></li>
+        }
+        <li><a href="@Url.Action("Index", "departments")">Department Map</a></li>
+        <li class="active">Edit Department</li>
+    </ul>
+
+    <main class="featureContent">
+    @if (User.IsInRole("User"))
+    {
+        @Html.Partial("UserDash")
+    }
+    else if (User.IsInRole("Admin") || User.IsInRole("Super Admin"))
+    {
+        @Html.Partial("AdminDash")
+
+        <div class="col-sm-9">
+                <div class="annHomeHead">
+                    <h2>Update @Html.DisplayFor(model => model.dept_name) Department</h2>
+                </div>
+                <hr />
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <p>Change information below, ensure <strong>all</strong> required &lpar;<span class="text-danger">*</span>&rpar; fields are complete and click Save Changes button.</p>
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <h3>@Html.LabelFor(model => model.dept_name, htmlAttributes: new { @class = "control-label col-md-4 required-star" })</h3>
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.dept_name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.dept_name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h3>
+                            @Html.LabelFor(model => model.dept_head, htmlAttributes: new { @class = "control-label col-md-4 required-star" })</h3>
+                                <div class="col-md-8">
+                                    @*Insert a list of Employees to be the head of that department*@
+
+                                    @Html.DropDownListFor(model => model.dept_head, ViewBag.dept_head as SelectList, new { @class = "form-control" })
+
+                                    @Html.ValidationMessageFor(model => model.dept_head, "", new { @class = "text-danger" })
+                                </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h3> @Html.LabelFor(model => model.dept_desc, htmlAttributes: new { @class = "control-label col-md-4" })</h3>
+                                <div class="col-md-8">
+                                    @Html.TextAreaFor(model => model.dept_desc, new { @class = "form-control", spellcheck = "true", wrap = "soft", rows = "10" })
+                                    @Html.ValidationMessageFor(model => model.dept_desc, "", new { @class = "text-danger" })
+                                </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h3>
+                            @Html.LabelFor(model => model.dept_phone, htmlAttributes: new { @class = "control-label col-md-4 required-star" })</h3>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.dept_phone, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.dept_phone, "", new { @class = "text-danger" })
+                                </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h3>
+                            @Html.LabelFor(model => model.section, htmlAttributes: new { @class = "control-label col-md-4 required-star" })</h3>
+                                <div class="col-md-8">
+                                    @Html.DropDownList("section", new SelectList(ViewBag.sections, "id", "section_name"), "--Select Map Section--", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.section, "", new { @class = "text-danger" })
+                                </div>
+                    </div>
+
+                    @Html.HiddenFor(model => model.dept_id)
+                    <div class="form-group confirmation">
+                        <div class="col-md-offset-4 col-md-8">
+                            <input type="submit" value="Save Changes" class="btn btn-confirm" />
+                        @*</div>
+                        <div class="col-md-offset-2 col-md-10">*@
+                            @Html.ActionLink("Cancel Update", "Index", null, new { @class = "btn btn-default" })
+                        </div>
+                    </div>
+
+                </div>
+                }
+        </div>
+    }
+      </main>
+</div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

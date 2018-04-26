@@ -1,0 +1,35 @@
+﻿@model HumberShores.Models.site_users
+@{
+    ViewBag.Title = "Login";
+}
+
+<div class="container">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index")">Home</a></li>
+        <li class="active"><a href="#">myHumber Login</a></li>
+    </ul>
+    <div class="annHomeHead">
+        <h2>Login to myHumber</h2>
+        <p class="serviceBtn"><a class="btn btn-default" href="@Url.Action("Create", "site_users")">Register Here</a></p> 
+    </div>
+    <hr />
+    <p>Please login using your credentials to access your Hub, whether User or Admin.</p>
+    <p class="text-danger">
+        @ViewBag.Message
+    </p>
+    <div class="col-md-7">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div>
+                @Html.LabelFor(u => u.user_username): @Html.TextBoxFor(u => u.user_username, new { @class = "form-control" })
+                <p>@Html.ValidationMessageFor(u => u.user_username, "", new { @class = "text-danger" })</p>
+            </div>
+            <div>
+                @Html.LabelFor(u => u.user_password): @Html.PasswordFor(u => u.user_password, new { @class = "form-control" })
+                <p>@Html.ValidationMessageFor(u => u.user_password, "", new { @class = "text-danger" })</p>
+            </div>
+            <input type="submit" value="Login" class="btn btn-default" id="blueBtn" />
+        }
+    </div>
+</div>

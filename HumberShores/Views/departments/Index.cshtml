@@ -1,0 +1,128 @@
+﻿@model IEnumerable<HumberShores.Models.department>
+
+@{
+    ViewBag.Title = "Interactive Map";
+    Layout = "~/Views/Shared/_headFoot.cshtml";
+}
+@section Styles {
+    <link href="~/Content/map.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/department.css" rel="stylesheet" type="text/css" />
+}
+
+<div class="container">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+        @if (User.IsInRole("User"))
+        {
+            <li><a href="@Url.Action("UserHome", "Home")">User Home</a></li>
+        }
+        else if (User.IsInRole("Admin") || User.IsInRole("Super Admin"))
+        {
+            <li><a href="@Url.Action("AdminHome", "Home")">Administrator Home</a></li>
+        }
+        <li class="active">Departments Map</li>
+    </ul>
+
+    <main class="featureContent">
+        <div id="temp"></div>
+        <div class="row">
+            <div class="col-md-6">
+                @Html.Partial("_map")
+            </div>
+            <div class="col-md-6">
+                <div>
+                    <h2>Hospital Map:</h2>
+                    <p>Click on the hospital sections to display information on that area of the hospital and departments within.</p>
+                    <p><strong>OR</strong></p>
+                    <p>Select department to display information of that area</p>
+                </div>
+                <div>
+                    @using (Ajax.BeginForm("ShowDepartment", "departments", new AjaxOptions
+                    {
+                        HttpMethod = "Post",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "information"
+                    }, new { id = "changeDept" }))
+                    {
+                        @Html.DropDownList("departments", new SelectList(Model, "dept_id", "dept_name"), "Select a Department", new { @class = "form-control" })
+                    }
+                </div>
+                <div id="information"></div>
+                <p><a href="https://goo.gl/maps/fVTXDL6oRnA2" class="btn btn-default" target="_blank">Get directions to Hospital</a>
+                <a href="tel:4165556262" class="btn btn-default" target="_blank">Call the Hospital</a></p>
+            </div>
+
+
+        </div>
+
+        @if (User.IsInRole("User"))
+        {
+            @Html.Partial("UserDash")
+        }
+        else if (User.IsInRole("Admin") || User.IsInRole("Super Admin"))
+        {
+            @Html.Partial("AdminDash")
+        
+        <div class="col-sm-9">
+            <h2>Administrative View:</h2>
+            <p>Access all department information. Click below to <strong>Add</strong> new department, <strong>Edit</strong> to change details or <strong>Delete</strong> to remove selected department</p>
+            <div class="col-12">
+                <a href="@Url.Action("Create", "departments")" class="btn btn-default btnService">Add New Department</a>
+
+                @*@Html.ActionLink("Add New Department", "Create")*@
+
+
+            </div>
+        </div>
+        <div class="col-12">
+            <table class="table table-hover table-responsive">
+                <thead>
+                    <tr>
+                        <th class="col-md-3">
+                            @Html.DisplayNameFor(model => model.dept_name)
+                        </th>
+                        <th class="col-md-4">
+                            @Html.DisplayNameFor(model => model.dept_desc)
+                        </th>
+                        <th class="col-md-1 text-center">
+                            @Html.DisplayNameFor(model => model.dept_phone)
+                        </th>
+                        <th class="col-md-2">
+                            Contact Name
+                        </th>
+                        <th class="col-md-2">Admin Actions</th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="col-md-3">
+                            @Html.DisplayFor(modelItem => item.dept_name)
+                        </td>
+                        <td class="col-md-4">
+                            @Html.DisplayFor(modelItem => item.dept_desc)
+                        </td>
+                        <td class="col-md-1 text-center">
+                            @Html.DisplayFor(modelItem => item.dept_phone)
+                        </td>
+                        <td class="col-md-2">
+                                @Html.DisplayFor(modelItem => item.employee.site_users1.full_name) 
+                        </td>
+                        <td class="col-md-2">
+                            @Html.ActionLink("Edit", "Edit", new { id = item.dept_id }, new { @class = "btn btn-default btn-sm" }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.dept_id }, new { @class = "btn btn-default btn-sm" })
+                        </td>
+                    </tr>}
+            </table>
+        </div>
+        }
+        @*}
+            }*@
+
+    </main>
+</div>
+    @section Scripts {
+        @*@Scripts.Render("~/bundles/jqueryunobtrusive")*@
+        <script src="~/Scripts/department.js"></script>
+
+    }

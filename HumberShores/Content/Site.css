@@ -1,0 +1,428 @@
+﻿
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+html {
+    font-size: 16px;
+}
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+hr {
+    max-width: 80%;
+    border-top: 2px solid #EEE;
+}
+label {
+    font-weight: 500;
+}
+#redBtn {
+    border-color: red;
+    color: red;
+    font-weight: 600;
+    margin: 15px auto;
+}
+#redBtn:hover {
+    background-color: red;
+    color: #FFF;
+}
+#orangeBtn {
+    border-color: #EFA463;
+    color: #EFA463;
+    font-weight: 600;
+    margin: 15px auto;
+}
+#orangeBtn:hover {
+    background-color: #EFA463;
+    color: #FFF;
+}
+#blueBtn {
+    border-color: #3972B2;
+    color: #3972B2;
+    font-weight: 600;
+    margin: 15px auto;
+}
+#blueBtn:hover {
+    background-color: #3972B2;
+    color: #FFF;
+}
+.required {
+    color: red;
+}
+.errorContainer img {
+    width: 100%;
+}
+#imgContainer {
+    margin-top: 20px;
+    margin-bottom: 0;
+    padding: 0;
+    max-height: 600px;
+    overflow: hidden;
+    align-items: flex-start;
+    display: flex;
+}
+
+    #imgContainer img {
+        max-width: 100%;
+    }
+
+/*Header/Nav Styling*/
+.navbar {
+    margin-bottom: 0;
+}
+#logo {
+    width: 200px;
+}
+#searchBar {
+    max-width: 50%;
+    align-self: center;
+    margin-right: 10px;
+}
+#searchInput {
+    height: 40px;
+    border-color: #3972B2;
+}
+#searchBtn {
+    height: 40px;
+    border-color: #3972B2;
+    background-color: #3972B2;
+}
+#searchBtn > svg {
+    color: #FFF;
+}
+#searchBarSm {
+    max-width: 90%;
+    margin: 5px auto;
+}
+.hideSearch {
+    display: none;
+}
+#donateBtn {
+    text-align: center;
+    background-color: #EFA463;
+    color: #FFF;
+    border-radius: 5px;
+    padding: 8px 15px;
+    width: 180px;
+    height: 40px;
+    align-self: center;
+    font-weight: 600;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#donateBtn:hover {
+    text-decoration: none;
+}
+#topNav {
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.navbar-toggle {
+    margin-left: 15px;
+}
+.navbar-toggle .icon-bar {
+    background-color: #3972B2;
+}
+.buttonStatic {
+    background-color: #FFF;
+    color: #3972B2;
+    border: 1px solid #3972B2;
+    border-radius: 5px;
+    font-weight: 600;
+}
+.nav > li > a:hover {
+    border: 1px solid #3972B2;
+    background-color: #3972B2;
+    color: #FFF;
+}
+.nav-pills > li.active > a {
+    background-color: #3972B2;
+}
+.navbar-collapse {
+    padding: 0;
+}
+#homePageDisplay {
+    margin-top: 20px;
+    padding: 0;
+    max-height: 600px;
+    overflow: hidden;
+    align-items: flex-end;
+    display: flex;
+}
+#homePageDisplay img {
+    max-width: 100%;
+}
+
+/*Announcement Bar Styling*/
+#annBarBG {
+    margin-top: 20px;
+    border-top: 2px solid #E0141F;
+    border-bottom: 2px solid #E0141F;
+}
+.annContainer {
+    display: inline-block;
+    max-width: 100%;
+    text-align: center;
+    margin: 5px auto;
+    padding: 0;
+}
+.annText {
+    display: inline-block;
+    max-width: 75%;
+    font-size: .8rem;
+    font-weight: 600;
+    margin: 0;
+    vertical-align: middle;
+}
+.annDate {
+    display: inline-block;
+    font-size: .8rem;
+    font-weight: 600;
+    margin: 0;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+.annTextDb {
+    display: inline-block;
+}
+.annTextDb, .annDateDb {
+    margin-bottom: 0;
+}
+#annDateP {
+    margin: 0;
+}
+.arrow span {
+    color: black;
+    opacity: 100;
+}
+.carousel-control.left, .carousel-control.right {
+    background-image: none !important;
+}
+.carousel-control.left .glyphicon {
+    left: 0;
+    margin-left: 0;
+}
+.carousel-control.right .glyphicon {
+    right: 0;
+    margin-right: 0;
+}
+.carousel-control .glyphicon-chevron-right {
+    top: 30%;
+    left: unset;
+}
+.carousel-control .glyphicon-chevron-left {
+    top: 30%;
+}
+
+
+/*Index Styling*/
+#indexHeader {
+    text-align: center;
+}
+.mainHead {
+    font-weight: 700;
+    font-size: 2.1rem;
+    margin: 5px;
+}
+.subHead {
+    color: #3972B2;
+    font-weight: 600;
+}
+.serviceBtn a, .serviceBtn a:active, .serviceBtn a:focus {
+    border: 1px solid #3972B2;
+    color: #3972B2;
+    background-color: #FFF;
+    font-weight: 600;
+}
+.serviceBtn > a:hover {
+    border: 1px solid #3972B2;
+    background-color: #3972B2;
+    color: #FFF;
+}
+.testiHole {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #EEE;
+    margin: 20px auto;
+}
+.testiText {
+    text-align: center;
+}
+
+/*Announcements Home Styling*/
+.annHomeHead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.annHomeHead > * {
+    margin-top: 10px;
+}
+.breadcrumb {
+    margin-top: 15px;
+}
+.annCrud {
+    display: inline-block;
+    margin-right: 5px;
+}
+#adminWelcome {
+    font-size: 1.5rem;
+}
+.form-horizontal .control-label {
+    text-align: left;
+}
+.adminDash {
+    height: 100%;
+    border: 1px solid #3972B2;
+    background-color: #3972B2;
+    color: #FFF;
+    padding: 10px;
+    border-radius: 10px;
+}
+.shadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/*Footer Styling*/
+footer {
+    margin-top: 30px;
+    background-color: #3972B2;
+    margin-bottom: 0;
+}
+.social {
+    font-size: 2rem;
+    align-self: center;
+    color: white;
+}
+#donateBtnFoot {
+    text-align: center;
+    background-color: #EFA463;
+    color: #FFF;
+    border-radius: 5px;
+    padding: 8px 15px;
+    width: 180px;
+    height: 40px;
+    align-self: center;
+    font-weight: 600;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#donateBtnFoot:hover {
+    text-decoration: none;
+}
+.topFooter {
+    margin: 30px 0;
+    display: flex;
+    justify-content: space-between;
+}
+.bottomFooter {
+    display: flex;
+    justify-content: space-between;
+}
+.footList {
+    display: inline-block;
+    padding-left: 0;
+}
+.footList a, .footList a:hover, .footList a:visited {
+    color: #fff;
+    text-decoration: none;
+}
+.footList li {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 10px;
+    color: white;
+}
+.footListHeader {
+    font-weight: 600;
+}
+#hospitalMapContainer {
+    width: 300px;
+    height: 150px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#hospitalMap {
+    height: 100%;
+}
+#copy {
+    text-align: center;
+    font-size: .8rem;
+    color: #FFF;
+    margin: 30px 0;
+}
+
+@media all and (max-width: 675px) {
+    #hospitalMapContainer {
+        display: none;
+    }
+    #donateBtnFoot {
+        display: none;
+    }
+    #annText {
+        max-width: 90%;
+    }
+    .annDate {
+        display: none;
+    }
+}
+@media all and (max-width: 600px) {
+    .hideSearch {
+        display: table;
+    }
+    #searchBar {
+        display: none;
+    }
+}
+@media all and (max-width: 500px) {
+    .annHomeHead {
+        display: block;
+    }
+}
+@media all and (max-width: 450px) {
+    #logo {
+        width: 150px;
+    }
+    .navbar-toggle {
+        margin-right: 0;
+        margin-left: 5px;
+    }
+    #testimonials {
+        display: none;
+    }
+}
+@media all and (max-width: 385px) {
+    .logoHide {
+        display: none;
+    }
+    .listHide {
+        display: none;
+    }
+    #donateBtn {
+        display: none;
+    }
+    .mainHead {
+        font-size: 1.5rem;
+        margin: 0 auto 20px;
+    }
+    #mainSubText {
+        display: none;
+    }
+    .subHead {
+        display: none;
+    }
+    .serviceText {
+        display: none;
+    }
+    .serviceBtn {
+        text-align: center;
+    }
+}

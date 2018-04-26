@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Error";
+}
+<div class="container">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+        <li><a href="@Url.Action("AdminHome", "Home")">Administrator Home</a></li>
+        <li><a href="@Url.Action("Index", "announcements")">Announcements Editor</a></li>
+        <li class="active">Announcements Details</li>
+    </ul>
+    <div class="annHomeHead">
+        <h2>Error</h2>
+    </div>
+    <hr />
+    @if (User.IsInRole("User"))
+    {
+        @Html.Partial("UserDash")
+    }
+    else
+    {
+        @Html.Partial("AdminDash")
+    }
+    <main class="col-sm-7 featureContent">
+        <h3>We have encountered an error.</h3> 
+        <p>Please try your action again.</p>
+        <p>@ViewBag.Error</p>
+        <hr />
+    </main>
+</div>

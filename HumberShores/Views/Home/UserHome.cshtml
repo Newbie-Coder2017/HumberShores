@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "User Home";
+}
+
+<div class="container">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+        <li class="active"><a href="#">User Home</a></li>
+    </ul>
+    <div class="annHomeHead">
+        <h2>User Home</h2>
+        <p class="serviceBtn"><a class="btn btn-default" href="@Url.Action("Logout", "Home")">Sign Out</a></p>
+    </div>
+    <p id="adminWelcome">Welcome back, @Session["first"]</p>
+    <hr />
+    @Html.Partial("userDash")
+    <div class="col-sm-7 featureContent">
+        <h3>Welcome to your HumberShores Home Page</h3>
+        <p>From this dashboard you have access to the sites features such as, booking appointments, buying parking passes, viewing donations, and more.</p>
+        <p>Thank you for Choosing Humber Shores as your health care provider.</p>
+    </div>
+</div>

@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Humber Shores Hospital</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,600,700" rel="stylesheet">
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("Styles", false)
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div class="navbar" id="header">
+            <div class="container">
+                <div class="row">
+                    <div id="topNav">
+                        <a class="navbar-brand" href="/"><img id="logo" src="~/imgs/logo.png" alt="The logo for Humber Shores Hospital" /></a>
+                        <div class="input-group" id="searchBar">
+                            <input type="text" class="form-control" id="searchInput" placeholder="Search for...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default serviceBtn" id="searchBtn" type="button"><i class="fas fa-search"></i></button>
+                            </span>
+                        </div>
+                        <a href="/" id="donateBtn">Donate</a>
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-group hideSearch" id="searchBarSm">
+                        <input type="text" class="form-control" id="searchInput" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" id="searchBtn" type="button"><i class="fas fa-search"></i></button>
+                        </span>
+                    </div>
+                    <nav class="navbar-collapse collapse">
+                        <ul class="nav nav-pills nav-justified">
+                            <li role="presentation" class="serviceBtn active">@Html.ActionLink("myHumber", "Login", "Home")</li>
+                            <li role="presentation" class="serviceBtn">@Html.ActionLink("Patients", "Index", "Home")</li>
+                            <li role="presentation" class="serviceBtn">@Html.ActionLink("Doctors", "Index", "Home")</li>
+                            <li role="presentation" class="serviceBtn">@Html.ActionLink("Resources", "Index", "Home")</li>
+                            <li role="presentation" class="serviceBtn">@Html.ActionLink("Careers", "Index", "Home")</li>
+                            <li role="presentation" class="serviceBtn">@Html.ActionLink("About", "Index", "Home")</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="container" id="annBarBG">
+                <div class="row">
+                    <div id="myCarousel" class="carousel slide">
+                        <div class="carousel-inner" role="listbox">
+                            <div class="annContainer item active">
+                                <div class="annText">
+                                    <span class="annTextDb">This is the Humber Shores Announcement Bar, if you see this bar ensure that you read the ticker as the information may be vital to your Hospital Visit.</span>
+                                </div>
+                            </div>
+                            @{
+                                Html.RenderAction("ShowAnn", "Home");
+                            }
+                        </div>
+                        <a href="#" class="left carousel-control arrow" role="button"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span><span class="sr-only">Previous</span></a>
+                        <a href="#" class="right carousel-control arrow" role="button"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span><span class="sr-only">Next</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    @RenderBody()
+    <footer class="container-fluid">
+        <div class="container">
+            <div class="row topFooter">
+                <a href="/"><img id="logo" class="logoHide" src="~/imgs/logoWhite.png" alt="The logo for Humber Shores Hospital" /></a>
+                <i class="fab fa-linkedin social"></i>
+                <i class="fab fa-facebook-square social"></i>
+                <i class="fab fa-twitter-square social"></i>
+                <i class="fab fa-google-plus-square social"></i>
+                <i class="fas fa-envelope-square social"></i>
+                <a href="/" id="donateBtnFoot">Donate</a>
+            </div>
+            <div class="row bottomFooter">
+                <ul class="footList">
+                    <li class="footListHeader">About</li>
+                    <li>Humber Shores</li>
+                    <li>Mission Statement</li>
+                    <li>Hospital Foundation</li>
+                    <li><a href="@Url.Action("Index", "departments")">Map &amp; Directions</a></li>
+                </ul>
+                <ul class="footList">
+                    <li class="footListHeader">Staff</li>
+                    <li>Contact Us</li>
+                    <li>Staff Directory</li>
+                    <li>Volunteers</li>
+                </ul>
+                <ul class="footList listHide">
+                    <li class="footListHeader">Extra</li>
+                    <li>Site Map</li>
+                    <li>Accessibility</li>
+                    <li>Terms of Use</li>
+                    <li>Privacy Policy</li>
+                </ul>
+                <div id="hospitalMapContainer">
+                    <div id="hospitalMap"></div>
+                </div>
+            </div>
+            <p id="copy">Humber Shores Hospital &copy; @DateTime.Now.Year</p>
+        </div>
+    </footer>
+    
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    @*@Scripts.Render("~/bundles/jqueryunobtrusive")*@
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryui")
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcKjAdvQMnfulszJ1zj9cK3z9OAPjeyVY&callback=initMap" async defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

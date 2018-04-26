@@ -1,0 +1,71 @@
+﻿@model HumberShores.Models.department
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_headFoot.cshtml";
+}
+@section Styles {
+    <link href="~/Content/department.css" rel="stylesheet" type="text/css" />
+
+}
+<div class="container">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+        @if (User.IsInRole("User"))
+        {
+            <li><a href="@Url.Action("UserHome", "Home")">User Home</a></li>
+        }
+        else if (User.IsInRole("Admin") || User.IsInRole("Super Admin"))
+        {
+            <li><a href="@Url.Action("AdminHome", "Home")">Administrator Home</a></li>
+        }
+        <li><a href="@Url.Action("Index", "departments")">Department Map</a></li>
+        <li class="active">Delete Department</li>
+    </ul>
+    <main class="featureContent">
+        @if (User.IsInRole("User"))
+        {
+            @Html.Partial("UserDash")
+        }
+        else if (User.IsInRole("Admin") || User.IsInRole("Super Admin"))
+        {
+            @Html.Partial("AdminDash")
+
+            <div class="col-sm-9">
+                <div class="annHomeHead">
+                    <h2>Delete Department</h2>
+                </div>
+                <hr />
+                <h2>You are about to remove @Html.DisplayFor(model => model.dept_name) department and it's information:</h2>
+                <p>Review information before clicking Delete button</p>
+                <div>
+                    <div class="dept">
+                        <h3>@Html.DisplayFor(model => model.dept_name)</h3>
+                        <div>
+                            Located in: @Html.DisplayFor(model => model.property_sections.section_name) Section
+                        </div>
+                        <div>
+                            <h4>@Html.DisplayNameFor(model => model.dept_desc)</h4>
+                            <div>@Html.DisplayFor(model => model.dept_desc)</div>
+                        </div>
+                        <div>
+                            <h4>@Html.DisplayFor(model => model.employee.site_users1.full_name)</h4>
+                            <div>@Html.DisplayNameFor(model => model.dept_phone): @Html.DisplayFor(model => model.dept_phone)</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 confirmation">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="form-actions no-color">
+                                <input type="submit" value="Yes, Delete" class="btn btn-confirm" />
+                                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+                            </div>
+                        }
+                    </div>
+                    </div>
+            </div>
+        }
+    </main>
+</div>

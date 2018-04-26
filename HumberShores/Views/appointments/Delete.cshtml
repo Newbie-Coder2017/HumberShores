@@ -1,0 +1,90 @@
+﻿@model HumberShores.Models.appointment
+
+@{
+    ViewBag.Title = "Cancel Appointment";
+}
+
+<div class="container">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+        @if (User.IsInRole("User"))
+        {
+            <li><a href="@Url.Action("UserHome", "Home")">User Home</a></li>
+        }
+        else
+        {
+            <li><a href="@Url.Action("AdminHome", "Home")">Administrator Home</a></li>
+        }
+        <li><a href="@Url.Action("Index", "appointments")">Appointments Home</a></li>
+        <li class="active">Cancel Appointment</li>
+    </ul>
+    <div class="annHomeHead">
+        <h2>Cancel Appointment</h2>
+    </div>
+    <hr />
+    @if (User.IsInRole("User"))
+    {
+        @Html.Partial("UserDash")
+    }
+    else
+    {
+        @Html.Partial("AdminDash")
+    }
+    <main class="col-sm-7 featureContent">
+        <h3>Are you sure you want to Cancel?</h3>
+        <div>
+            <h3>Patient Name</h3>
+            <p>@Html.DisplayFor(model => model.site_users.user_first_name) @Html.DisplayFor(model => model.site_users.user_last_name)</p>
+        </div>
+        <div>
+            <h3>@Html.DisplayNameFor(model => model.employee.emp_id)</h3>
+            <p>@Html.DisplayFor(model => model.employee.emp_id)</p>
+        </div>
+        <div>
+            <h3>@Html.DisplayNameFor(model => model.app_date)</h3>
+            <p>@Html.DisplayFor(model => model.app_date)</p>
+        </div>
+        <div>
+            <h3>@Html.DisplayNameFor(model => model.app_time)</h3>
+            <p>@Html.DisplayFor(model => model.app_time)</p>
+        </div>
+        <div>
+            <h3>@Html.DisplayNameFor(model => model.app_reason)</h3>
+            <p>@Html.DisplayFor(model => model.app_reason)</p>
+        </div>
+        <div>
+            <h3>@Html.DisplayNameFor(model => model.app_comment)</h3>
+            <p>@Html.DisplayFor(model => model.app_comment)</p>
+        </div>
+        <div>
+            <h3>@Html.DisplayNameFor(model => model.app_child)</h3>
+            <p>@Html.DisplayFor(model => model.app_child)</p>
+        </div>
+        <div>
+            <h3>@Html.DisplayNameFor(model => model.app_child_first)</h3>
+            <p>@Html.DisplayFor(model => model.app_child_first)</p>
+        </div>
+        <div>
+            <h3>@Html.DisplayNameFor(model => model.app_child_last)</h3>
+            <p>@Html.DisplayFor(model => model.app_child_last)</p>
+        </div>
+        <div>
+            <h3>@Html.DisplayNameFor(model => model.app_child_dob)</h3>
+            <p>@Html.DisplayFor(model => model.app_child_dob)</p>
+        </div>
+        <div>
+            <h3>@Html.DisplayNameFor(model => model.app_child_gender)</h3>
+            <p>@Html.DisplayFor(model => model.app_child_gender)</p>
+        </div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions">
+                <input type="submit" value="Cancel Appointment" id="redBtn" class="btn btn-default" />
+                <p class="serviceBtn annCrud">@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })</p>
+            </div>
+        }
+        <hr />
+    </main>
+</div>

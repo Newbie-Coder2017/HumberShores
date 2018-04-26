@@ -1,0 +1,15 @@
+﻿@model IEnumerable<HumberShores.Models.announcement>
+
+@foreach (var item in Model)
+{
+    <div class="annContainer item">
+        <div class="annText">
+            <p class="annTextDb">@Html.DisplayFor(modelItem => item.ann_text)</p>
+        </div>
+        <div class="annDate">
+            <p id="annDateP">@Html.DisplayFor(modelItem => item.ann_severity) at</p>
+            <p class="annDateDb">@Html.DisplayFor(modelItem => item.ann_date)</p>
+        </div>
+    </div>
+}
+

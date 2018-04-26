@@ -1,0 +1,152 @@
+﻿@model IEnumerable<HumberShores.Models.appointment>
+
+@{
+    ViewBag.Title = "Appointments";
+}
+
+<div class="container">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+        @if (User.IsInRole("User"))
+        {
+            <li><a href="@Url.Action("UserHome", "Home")">User Home</a></li>
+        }
+        else
+        {
+            <li><a href="@Url.Action("AdminHome", "Home")">Administrator Home</a></li>
+        }
+        <li class="active">Appointments Editor</li>
+    </ul>
+    <div class="annHomeHead">
+        <h2>View/Edit Appointments</h2>
+    </div>
+    <p id="adminWelcome">Welcome back, @Session["first"]</p>
+    <p class="serviceBtn">@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-default" })</p>
+    <hr />
+    @if (User.IsInRole("User"))
+    {
+        @Html.Partial("UserDash")
+    }
+    else
+    {
+        @Html.Partial("AdminDash")
+    }
+    <main class="col-sm-7 featureContent">
+        @foreach (var item in Model)
+        {
+            if (User.IsInRole("User") && (item.site_users.user_id == Convert.ToInt32(Session["userId"])))
+            {
+                <div>
+                    <h3>Patient Name</h3>
+                    <p>@Html.DisplayFor(modelItem => item.site_users.user_first_name) @Html.DisplayFor(modelItem => item.site_users.user_last_name)</p>
+                </div>
+                <div>
+                    <h3>@Html.DisplayNameFor(model => model.employee.emp_id)</h3>
+                    <p>@Html.DisplayFor(modelTtem => item.employee.emp_id)</p>
+                </div>
+                <div>
+                    <h3>@Html.DisplayNameFor(model => model.app_date)</h3>
+                    <p>@Html.DisplayFor(modeItem => item.app_date)</p>
+                </div>
+                <div>
+                    <h3>@Html.DisplayNameFor(model => model.app_time)</h3>
+                    <p>@Html.DisplayFor(modeItem => item.app_time)</p>
+                </div>
+                <div>
+                    <h3>@Html.DisplayNameFor(model => model.app_reason)</h3>
+                    <p>@Html.DisplayFor(modeItem => item.app_reason)</p>
+                </div>
+                <div>
+                    <h3>@Html.DisplayNameFor(model => model.app_comment)</h3>
+                    <p>@Html.DisplayFor(modeItem => item.app_comment)</p>
+                </div>
+                <div>
+                    <h3>@Html.DisplayNameFor(model => model.app_child)</h3>
+                    <p>@Html.DisplayFor(modeItem => item.app_child)</p>
+                </div>
+                if (item.app_child)
+                {
+                    <div>
+                        <h3>@Html.DisplayNameFor(model => model.app_child_first)</h3>
+                        <p>@Html.DisplayFor(modeItem => item.app_child_first)</p>
+                    </div>
+                    <div>
+                        <h3>@Html.DisplayNameFor(model => model.app_child_last)</h3>
+                        <p>@Html.DisplayFor(modeItem => item.app_child_last)</p>
+                    </div>
+                    <div>
+                        <h3>@Html.DisplayNameFor(model => model.app_child_dob)</h3>
+                        <p>@Html.DisplayFor(modeItem => item.app_child_dob)</p>
+                    </div>
+                    <div>
+                        <h3>@Html.DisplayNameFor(model => model.app_child_gender)</h3>
+                        <p>@Html.DisplayFor(modelItem => item.app_child_gender)</p>
+                    </div>
+                }
+                <div>
+                    <p class="serviceBtn annCrud">@Html.ActionLink("Update Appointment", "Edit", new { id = item.app_id }, new { @class = "btn btn-default" })</p>
+                    <p class="serviceBtn annCrud">@Html.ActionLink("Cancel Appointment", "Delete", new { id = item.app_id }, new { @class = "btn btn-default" })</p>
+                    <p class="serviceBtn annCrud">@Html.ActionLink("Details", "Details", new { id = item.app_id }, new { @class = "btn btn-default" })</p>
+                </div>
+                <hr />
+            }
+            else if (User.IsInRole("Admin") || User.IsInRole("Super Admin"))
+            {
+                <div>
+                    <h3>Patient Name</h3>
+                    <p>@Html.DisplayFor(modelItem => item.site_users.user_first_name) @Html.DisplayFor(modelItem => item.site_users.user_last_name)</p>
+                </div>
+                <div>
+                    <h3>@Html.DisplayNameFor(model => model.employee.emp_id)</h3>
+                    <p>@Html.DisplayFor(modelTtem => item.employee.emp_id)</p>
+                </div>
+                <div>
+                    <h3>@Html.DisplayNameFor(model => model.app_date)</h3>
+                    <p>@Html.DisplayFor(modeItem => item.app_date)</p>
+                </div>
+                <div>
+                    <h3>@Html.DisplayNameFor(model => model.app_time)</h3>
+                    <p>@Html.DisplayFor(modeItem => item.app_time)</p>
+                </div>
+                <div>
+                    <h3>@Html.DisplayNameFor(model => model.app_reason)</h3>
+                    <p>@Html.DisplayFor(modeItem => item.app_reason)</p>
+                </div>
+                <div>
+                    <h3>@Html.DisplayNameFor(model => model.app_comment)</h3>
+                    <p>@Html.DisplayFor(modeItem => item.app_comment)</p>
+                </div>
+                <div>
+                    <h3>@Html.DisplayNameFor(model => model.app_child)</h3>
+                    <p>@Html.DisplayFor(modeItem => item.app_child)</p>
+                </div>
+                if (item.app_child)
+                {
+                    <div>
+                        <h3>@Html.DisplayNameFor(model => model.app_child_first)</h3>
+                        <p>@Html.DisplayFor(modeItem => item.app_child_first)</p>
+                    </div>
+                    <div>
+                        <h3>@Html.DisplayNameFor(model => model.app_child_last)</h3>
+                        <p>@Html.DisplayFor(modeItem => item.app_child_last)</p>
+                    </div>
+                    <div>
+                        <h3>@Html.DisplayNameFor(model => model.app_child_dob)</h3>
+                        <p>@Html.DisplayFor(modeItem => item.app_child_dob)</p>
+                    </div>
+                    <div>
+                        <h3>@Html.DisplayNameFor(model => model.app_child_gender)</h3>
+                        <p>@Html.DisplayFor(modelItem => item.app_child_gender)</p>
+                    </div>
+                }
+                <div>
+                    <p class="serviceBtn annCrud">@Html.ActionLink("Update Appointment", "Edit", new { id = item.app_id }, new { @class = "btn btn-default" })</p>
+                    <p class="serviceBtn annCrud">@Html.ActionLink("Cancel Appointment", "Delete", new { id = item.app_id }, new { @class = "btn btn-default" })</p>
+                    <p class="serviceBtn annCrud">@Html.ActionLink("Details", "Details", new { id = item.app_id }, new { @class = "btn btn-default" })</p>
+                </div>
+                <hr />
+            }
+
+        }
+    </main>
+</div>

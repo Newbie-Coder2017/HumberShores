@@ -1,0 +1,55 @@
+﻿@model IEnumerable<HumberShores.Models.announcement>
+
+@{
+    ViewBag.Title = "Announcements";
+}
+
+<div class="container">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+        <li><a href="@Url.Action("AdminHome", "Home")">Administrator Home</a></li>
+        <li class="active">Announcements Editor</li>
+    </ul>
+    <div class="annHomeHead">
+        <h2>View/Edit Announcements</h2>
+        @*<form>
+            <input type="hidden" id="hideBar" name="hideBar" value=""/>
+            <input type="submit" class="btn btn-default" id="orangeBtn" value="Announcement On/Off"/>
+        </form>*@
+    </div>
+    <p id="adminWelcome">Welcome back, @Session["first"]</p>  
+    <p class="serviceBtn">@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-default" })</p>
+    <hr />
+    @Html.Partial("AdminDash")
+    <main class="col-sm-7 featureContent">
+        @foreach (var item in Model)
+        {
+            <div>
+                <h3>@Html.DisplayNameFor(model => model.ann_text)</h3>
+                <p>@Html.DisplayFor(modelItem => item.ann_text)</p>
+            </div>
+            <div>
+                <h3>@Html.DisplayNameFor(model => model.ann_date)</h3>
+                <p>@Html.DisplayFor(modelItem => item.ann_date)</p>
+            </div>
+            <div>
+                <h3>@Html.DisplayNameFor(model => model.ann_severity)</h3>
+                <p>@Html.DisplayFor(modelItem => item.ann_severity)</p>
+            </div>
+            <div>
+                <h3>@Html.DisplayNameFor(model => model.ann_visible)</h3>
+                <p>@Html.DisplayFor(modelItem => item.ann_visible)</p>
+            </div>
+            <div>
+                <h3>@Html.DisplayNameFor(model => model.emp_id)</h3>
+                <p>@Html.DisplayFor(modelItem => item.employee.emp_id)</p>
+            </div>
+            <div>
+                <p class="serviceBtn annCrud">@Html.ActionLink("Update Announcement", "Edit", new { id = item.ann_id }, new { @class = "btn btn-default" })</p>
+                <p class="serviceBtn annCrud">@Html.ActionLink("Delete Announcement", "Delete", new { id = item.ann_id }, new { @class = "btn btn-default" })</p>
+                <p class="serviceBtn annCrud">@Html.ActionLink("Details", "Details", new { id = item.ann_id }, new { @class = "btn btn-default" })</p>
+            </div>
+            <hr />
+        }
+    </main>
+</div>

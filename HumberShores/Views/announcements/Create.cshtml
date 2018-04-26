@@ -1,0 +1,52 @@
+﻿@model HumberShores.Models.announcement
+
+@{
+    ViewBag.Title = "Create New Announcement";
+}
+
+<div class="container">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+        <li><a href="@Url.Action("AdminHome", "Home")">Administrator Home</a></li>
+        <li><a href="@Url.Action("Index", "announcements")">Announcements Editor</a></li>
+        <li class="active">Create New Announcement</li>
+    </ul>
+    <div class="annHomeHead">
+        <h2>Create a New Announcement</h2>
+    </div>
+    <hr />
+    @Html.Partial("AdminDash")
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <main class="col-sm-7 featureContent">
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div>
+                    <h3>@Html.LabelFor(model => model.ann_text, htmlAttributes: new { @class = "control-label" }) <span class="required">*</span></h3>
+                    @Html.EditorFor(model => model.ann_text, new { htmlAttributes = new { @class = "form-control" } })
+                    <p>@Html.ValidationMessageFor(model => model.ann_text, "", new { @class = "text-danger" })</p>
+                </div>
+                <div>
+                    <h3>@Html.LabelFor(model => model.ann_severity, htmlAttributes: new { @class = "control-label" }) <span class="required">*</span></h3>
+                    @Html.DropDownList("ann_severity", new List<SelectListItem> {
+                            new SelectListItem{ Text="Emergency", Value = "Emergency"},
+                            new SelectListItem{ Text="Important", Value = "Important"},
+                            new SelectListItem{ Text="Cautionary", Value = "Cautionary"},
+                        }, new { @class = "form-control" })
+                    <p>@Html.ValidationMessageFor(model => model.ann_severity, "", new { @class = "text-danger" })</p>
+                </div>
+                <div>
+                    <p class="required">* denotes a required field</p>
+                    <input type="submit" value="Create Announcement" id="orangeBtn" class="btn btn-default" />
+                    <p class="serviceBtn annCrud">@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })</p>
+                </div>
+            </div>
+            <hr />
+        </main>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

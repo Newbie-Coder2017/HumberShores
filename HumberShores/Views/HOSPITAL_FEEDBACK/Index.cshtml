@@ -1,0 +1,162 @@
+﻿@model IEnumerable<HumberShores.Models.HOSPITAL_FEEDBACK>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_headFoot.cshtml";
+}
+
+<h2>Current Vacancies</h2>
+
+@*<div class="row">*@
+<div class="container">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+        @if (User.IsInRole("User"))
+    {
+        <li><a href="@Url.Action("UserHome", "Home")">User Home</a></li>
+}
+else
+{
+    <li><a href="@Url.Action("AdminHome", "Home")">Administrator Home</a></li>
+}
+    </ul>
+
+
+        <div class="col-lg-6 col-lg-offset-3">
+            @foreach (var item in Model)
+            {
+                <div id="@item.id_feedback">
+                    <div>
+                        <p><strong>First Name:</strong></p><p>@item.f_name</p>
+                    </div>
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div>
+                            <p><strong>Last Name:</strong></p><p>@item.l_name</p>
+                        </div>
+                        <div>
+                            <p><strong>Contact Email:</strong></p><p>@item.contact_email</p>
+                        </div>
+                        <div>
+                            <p><strong>Type of Feedback:</strong></p><p>@item.type_feedback</p>
+                        </div>
+                        <div>
+                            <p><strong>Department:</strong></p><p>@item.depart_feedback</p>
+                        </div>
+                    }
+
+
+                    <div>
+                        <p><strong>Comment:</strong></p><p>@item.comment_feedback</p>
+                    </div>
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div>
+                            <p><strong>Date of Feedback:</strong></p><p>@item.date_feedback</p>
+                        </div>
+                        <div>
+                            <p><strong>Published (Value of 0 or 1):</strong></p><p>@item.is_publish</p>
+                        </div>
+                    }
+                </div>
+
+
+
+                <div>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("Delete", "Delete", "HOSPITAL_FEEDBACK", new { id = item.id_feedback }, null)
+                        //Link(this HtmlHelper htmlHelper, string linkText, string actionName, string controllerName, object routeValues, object htmlAttributes);
+
+
+                    }
+
+                </div>
+                <hr />
+            }
+        </div>
+        <p class="card-text">Click the button below to Login</p>
+        <h3>@Html.ActionLink("Login", "Login", "Home", null, null)</h3>
+</div>
+
+
+
+
+
+
+@*@{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_headFoot.cshtml";
+    }
+
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.f_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.l_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.contact_email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.type_feedback)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.depart_feedback)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.comment_feedback)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.date_feedback)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.is_publish)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.f_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.l_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.contact_email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.type_feedback)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.depart_feedback)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.comment_feedback)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.date_feedback)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.is_publish)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.id_feedback }) |
+                @Html.ActionLink("Details", "Details", new { id=item.id_feedback }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.id_feedback })
+            </td>
+        </tr>
+    }
+
+    </table>*@

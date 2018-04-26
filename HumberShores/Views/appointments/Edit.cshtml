@@ -1,0 +1,130 @@
+﻿@model HumberShores.Models.appointment
+
+@{
+    ViewBag.Title = "Edit Appointment";
+}
+<div class="container">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+        @if (User.IsInRole("User"))
+        {
+            <li><a href="@Url.Action("UserHome", "Home")">User Home</a></li>
+        }
+        else
+        {
+            <li><a href="@Url.Action("AdminHome", "Home")">Administrator Home</a></li>
+        }
+        <li><a href="@Url.Action("Index", "appointments")">Appointments Home</a></li>
+        <li class="active">Edit Appointment</li>
+    </ul>
+    <div class="annHomeHead">
+        <h2>Edit Appointment</h2>
+    </div>
+    <hr />
+    @if (User.IsInRole("User"))
+    {
+        @Html.Partial("UserDash")
+    }
+    else
+    {
+        @Html.Partial("AdminDash")
+    }
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <main class="col-sm-7 featureContent">
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div>
+                    <h3>@Html.LabelFor(model => model.emp_id, "emp_id", htmlAttributes: new { @class = "control-label" })<span class="required">*</span></h3>
+                    @Html.DropDownList("emp_id", null, htmlAttributes: new { @class = "form-control" })
+                    <p>@Html.ValidationMessageFor(model => model.emp_id, "", new { @class = "text-danger" })</p>
+                </div>
+
+                <div>
+                    <h3>@Html.LabelFor(model => model.app_date, htmlAttributes: new { @class = "control-label" })<span class="required">*</span></h3>
+                    <div class="input-group date">
+                        @Html.EditorFor(model => model.app_date, new { htmlAttributes = new { @id = "date", @class = "form-control" } })
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                    <p>@Html.ValidationMessageFor(model => model.app_date, "", new { @class = "text-danger" })</p>
+                </div>
+
+                <div>
+                    <h3>@Html.LabelFor(model => model.app_time, htmlAttributes: new { @class = "control-label" })<span class="required">*</span></h3>
+                    <div class="input-group date">
+                        @Html.EditorFor(model => model.app_time, new { htmlAttributes = new { @id = "time", @class = "form-control" } })
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-time"></span>
+                        </span>
+                    </div>
+                    <p>@Html.ValidationMessageFor(model => model.app_time, "", new { @class = "text-danger" })</p>
+                </div>
+
+                <div>
+                    <h3>@Html.LabelFor(model => model.app_reason, htmlAttributes: new { @class = "control-label" })<span class="required">*</span></h3>
+                    @Html.EditorFor(model => model.app_reason, new { htmlAttributes = new { @class = "form-control" } })
+                    <p>@Html.ValidationMessageFor(model => model.app_reason, "", new { @class = "text-danger" })</p>
+                </div>
+
+                <div>
+                    <h3>@Html.LabelFor(model => model.app_comment, htmlAttributes: new { @class = "control-label" })</h3>
+                    @Html.EditorFor(model => model.app_comment, new { htmlAttributes = new { @class = "form-control" } })
+                    <p>@Html.ValidationMessageFor(model => model.app_comment, "", new { @class = "text-danger" })</p>
+                </div>
+
+                <div>
+                    <h3>@Html.LabelFor(model => model.app_child, htmlAttributes: new { @class = "control-label" })<span class="required">*</span></h3>
+                    <div class="checkbox">
+                        <div id="childSelector">@Html.EditorFor(model => model.app_child)</div>
+                        <p>@Html.ValidationMessageFor(model => model.app_child, "", new { @class = "text-danger" })</p>
+                    </div>
+                </div>
+                <div id="childFields">
+                    <div>
+                        <h3>@Html.LabelFor(model => model.app_child_first, htmlAttributes: new { @class = "control-label" })</h3>
+                        @Html.EditorFor(model => model.app_child_first, new { htmlAttributes = new { @class = "form-control" } })
+                        <p>@Html.ValidationMessageFor(model => model.app_child_first, "", new { @class = "text-danger" })</p>
+                    </div>
+
+                    <div>
+                        <h3>@Html.LabelFor(model => model.app_child_last, htmlAttributes: new { @class = "control-label" })</h3>
+                        @Html.EditorFor(model => model.app_child_last, new { htmlAttributes = new { @class = "form-control" } })
+                        <p>@Html.ValidationMessageFor(model => model.app_child_last, "", new { @class = "text-danger" })</p>
+                    </div>
+
+                    <div>
+                        <h3>@Html.LabelFor(model => model.app_child_dob, htmlAttributes: new { @class = "control-label" })</h3>
+                        <div class="input-group date">
+                            @Html.EditorFor(model => model.app_child_dob, new { htmlAttributes = new { @id = "dateBirth", @class = "form-control" } })
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                        <p>@Html.ValidationMessageFor(model => model.app_child_dob, "", new { @class = "text-danger" })</p>
+                    </div>
+                    <div>
+                        <h3>@Html.LabelFor(model => model.app_child_gender, htmlAttributes: new { @class = "control-label" })</h3>
+                        Male: @Html.RadioButtonFor(model => model.app_child_gender, "M")
+                        Female: @Html.RadioButtonFor(model => model.app_child_gender, "F")
+                        Other: @Html.RadioButtonFor(model => model.app_child_gender, "Other")
+                        <p>@Html.ValidationMessageFor(model => model.app_child_gender, "", new { @class = "text-danger" })</p>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="required">* denotes a required field</p>
+                    <input type="submit" value="Update Appointment" id="orangeBtn" class="btn btn-default" />
+                    <p class="serviceBtn annCrud">@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })</p>
+                </div>
+            </div>
+            <hr />
+        </main>
+    }
+</div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

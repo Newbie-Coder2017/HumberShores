@@ -1,0 +1,26 @@
+﻿#changeDept {
+    margin-bottom: 3em
+}
+
+#map:hover > *:not(#HumberShores) {
+    opacity: 0.7;
+}
+
+#HumberShores:hover > *:not(:hover) {
+    opacity: 0.3;
+}
+
+.confirmation {
+    margin-top: 3em;
+}
+
+#temp {
+    display: none;
+    position: absolute;
+    padding: 1em;
+    width: 250px;
+    font-size: small;
+    z-index: 20;
+    background-color: lightgray;
+    opacity: 1;
+}

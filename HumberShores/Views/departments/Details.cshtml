@@ -1,0 +1,59 @@
+﻿@model HumberShores.Models.department
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_headFoot.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>department</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.dept_desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dept_desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dept_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dept_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dept_phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dept_phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.employee.emp_position)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employee.emp_position)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.property_sections.section_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.property_sections.section_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.dept_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

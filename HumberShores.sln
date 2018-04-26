@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HumberShores", "HumberShores\HumberShores.csproj", "{E5C32A9A-B443-48E9-B774-A8C53F852729}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E5C32A9A-B443-48E9-B774-A8C53F852729}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5C32A9A-B443-48E9-B774-A8C53F852729}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5C32A9A-B443-48E9-B774-A8C53F852729}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5C32A9A-B443-48E9-B774-A8C53F852729}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4E582552-0FEB-4F26-81DD-A4950A7CD4FA}
+	EndGlobalSection
+EndGlobal

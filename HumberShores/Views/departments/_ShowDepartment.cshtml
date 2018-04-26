@@ -1,0 +1,23 @@
+﻿@model HumberShores.Models.department
+
+@section Styles {
+    <link href="@Url.Content("~/Content/department.css")" rel="stylesheet" type="text/css" />
+}
+<div>
+    <h3>@Html.DisplayFor(model => model.dept_name)</h3>
+    <div>
+        <h4>@Html.DisplayNameFor(model => model.dept_desc)</h4>
+        <div>@Html.DisplayFor(model => model.dept_desc)</div>
+    </div>
+    <div>
+        <h4>@Html.DisplayFor(model => model.employee.site_users1.full_name)</h4>
+        <div>@Html.DisplayNameFor(model => model.dept_phone): @Html.DisplayFor(model => model.dept_phone)</div>
+    </div>
+</div>
+ @if (User.IsInRole("Admin") || User.IsInRole("Super Admin"))
+        {        
+            <p>
+                @Html.ActionLink("Edit this entry", "Edit", new { id = Model.dept_id })
+            </p>
+        }
+<hr />

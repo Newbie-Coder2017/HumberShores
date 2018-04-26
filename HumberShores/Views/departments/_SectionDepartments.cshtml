@@ -1,0 +1,8 @@
+﻿@model HumberShores.Models.department
+
+@foreach (var item in Model)
+{
+
+    @Html.Partial("~/Views/departments/_ShowDepartment.cshtml", item)
+
+}

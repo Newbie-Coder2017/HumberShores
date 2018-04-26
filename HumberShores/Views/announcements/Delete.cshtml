@@ -1,0 +1,54 @@
+﻿@model HumberShores.Models.announcement
+
+@{
+    ViewBag.Title = "Delete Announcement";
+}
+
+<div class="container">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+        <li><a href="@Url.Action("AdminHome", "Home")">Administrator Home</a></li>
+        <li><a href="@Url.Action("Index", "announcements")">Announcements Editor</a></li>
+        <li class="active">Delete Announcement</li>
+    </ul>
+    <div class="annHomeHead">
+        <h2>Delete Announcement</h2>
+
+    </div>
+    <hr />
+    @Html.Partial("AdminDash")
+    <main class="col-sm-7 featureContent">
+        <h3>Are you sure you want to delete this?</h3>
+        <div>
+            <h3>@Html.DisplayNameFor(model => model.ann_text)</h3>
+            <p>@Html.DisplayFor(model => model.ann_text)</p>
+        </div>
+        <div>
+            <h3>@Html.DisplayNameFor(model => model.ann_date)</h3>
+            <p>@Html.DisplayFor(model => model.ann_date)</p>
+        </div>
+        <div>
+            <h3>@Html.DisplayNameFor(model => model.ann_severity)</h3>
+            <p>@Html.DisplayFor(model => model.ann_severity)</p>
+        </div>
+        <div>
+            <h3>@Html.DisplayNameFor(model => model.ann_visible)</h3>
+            <p>@Html.DisplayFor(model => model.ann_visible)</p>
+        </div>
+        <div>
+            <h3>@Html.DisplayNameFor(model => model.emp_id)</h3>
+            <p>@Html.DisplayFor(model => model.employee.emp_id)</p>
+        </div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions">
+                <input type="submit" value="Delete Announcement" id="redBtn" class="btn btn-default" />
+                <p class="serviceBtn annCrud">@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })</p>
+            </div>
+        }
+        <hr />
+    </main>
+</div>
+

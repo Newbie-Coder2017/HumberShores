@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0cfc232797f5453faa90bd0b9d1a7627" Name="Diagram1" ZoomLevel="55">
+        <EntityTypeShape EntityType="MattDatabaseModel.announcement" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MattDatabaseModel.department" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MattDatabaseModel.employee" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MattDatabaseModel.site_roles" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="MattDatabaseModel.site_users" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <AssociationConnector Association="MattDatabaseModel.fk_announcements_emp_id" ManuallyRouted="false" />
+        <AssociationConnector Association="MattDatabaseModel.fk_departments_emp_id" ManuallyRouted="false" />
+        <AssociationConnector Association="MattDatabaseModel.fk_employees_dept_id" ManuallyRouted="false" />
+        <AssociationConnector Association="MattDatabaseModel.fk_users_emp_id" ManuallyRouted="false" />
+        <AssociationConnector Association="MattDatabaseModel.fk_users_role_code" ManuallyRouted="false" />
+        <AssociationConnector Association="MattDatabaseModel.fk_announcements_emp_id1" />
+        <AssociationConnector Association="MattDatabaseModel.fk_employees_user_id" />
+        <EntityTypeShape EntityType="MattDatabaseModel.appointment" Width="1.5" PointX="7.625" PointY="2.25" />
+        <EntityTypeShape EntityType="MattDatabaseModel.HOSPITAL_FEEDBACK" Width="1.5" PointX="10" PointY="5.875" />
+        <EntityTypeShape EntityType="MattDatabaseModel.HOSPITAL_VACANCY" Width="1.5" PointX="9.875" PointY="3.125" />
+        <AssociationConnector Association="MattDatabaseModel.fk_appointments_emp_id" />
+        <AssociationConnector Association="MattDatabaseModel.fk_appointments_patient_id" />
+        <EntityTypeShape EntityType="MattDatabaseModel.OPPORTUNITY" Width="1.5" PointX="5.375" PointY="7.125" />
+        <EntityTypeShape EntityType="MattDatabaseModel.VOLUNTEER" Width="1.5" PointX="7.625" PointY="6.5" />
+        <AssociationConnector Association="MattDatabaseModel.fk_opportunity_dept" />
+        <AssociationConnector Association="MattDatabaseModel.fk_volunteer_opp" />
+        <EntityTypeShape EntityType="MattDatabaseModel.PASS" Width="1.5" PointX="12.75" PointY="0.5" />
+        <EntityTypeShape EntityType="MattDatabaseModel.PASS_TYPE" Width="1.5" PointX="10.375" PointY="0.5" />
+        <EntityTypeShape EntityType="MattDatabaseModel.VEHICLE" Width="1.5" PointX="2.875" PointY="9.375" />
+        <AssociationConnector Association="MattDatabaseModel.FK_PASS_TYPE" />
+        <AssociationConnector Association="MattDatabaseModel.fk_pass_user" />
+        <AssociationConnector Association="MattDatabaseModel.fk_vehicle_user" />
+        <EntityTypeShape EntityType="MattDatabaseModel.province" Width="1.5" PointX="12.625" PointY="3.875" />
+        <EntityTypeShape EntityType="MattDatabaseModel.specialty" Width="1.5" PointX="12.375" PointY="6.125" />
+        <EntityTypeShape EntityType="MattDatabaseModel.physician" Width="1.5" PointX="16" PointY="3.25" />
+        <AssociationConnector Association="MattDatabaseModel.fk_physician_dept_id" />
+        <AssociationConnector Association="MattDatabaseModel.fk_physician_emp_id" />
+        <AssociationConnector Association="MattDatabaseModel.fk_physician_provincek" />
+        <AssociationConnector Association="MattDatabaseModel.fk_physician_special1_id" />
+        <AssociationConnector Association="MattDatabaseModel.fk_physician_special2_id" />
+        <AssociationConnector Association="MattDatabaseModel.fk_physician_user_id" />
+        <EntityTypeShape EntityType="MattDatabaseModel.City" Width="1.5" PointX="12.625" PointY="9.875" />
+        <EntityTypeShape EntityType="MattDatabaseModel.Country" Width="1.5" PointX="10.375" PointY="10" />
+        <EntityTypeShape EntityType="MattDatabaseModel.Image" Width="1.5" PointX="5.375" PointY="11.75" />
+        <EntityTypeShape EntityType="MattDatabaseModel.property_sections" Width="1.5" PointX="0.75" PointY="13" />
+        <AssociationConnector Association="MattDatabaseModel.country_city_cc_fk" />
+        <AssociationConnector Association="MattDatabaseModel.departments_section_fk" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

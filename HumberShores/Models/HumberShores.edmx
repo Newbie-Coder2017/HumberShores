@@ -1,0 +1,1475 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MattDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="announcements">
+          <Key>
+            <PropertyRef Name="ann_id" />
+          </Key>
+          <Property Name="ann_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ann_text" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="ann_date" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ann_severity" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ann_visible" Type="bit" Nullable="false" />
+          <Property Name="emp_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="appointments">
+          <Key>
+            <PropertyRef Name="app_id" />
+          </Key>
+          <Property Name="app_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="patient_id" Type="int" Nullable="false" />
+          <Property Name="emp_id" Type="int" Nullable="false" />
+          <Property Name="app_date" Type="date" Nullable="false" />
+          <Property Name="app_time" Type="time" Precision="7" Nullable="false" />
+          <Property Name="app_reason" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="app_comment" Type="varchar" MaxLength="100" />
+          <Property Name="app_child" Type="bit" Nullable="false" />
+          <Property Name="app_child_first" Type="varchar" MaxLength="15" />
+          <Property Name="app_child_last" Type="varchar" MaxLength="20" />
+          <Property Name="app_child_dob" Type="date" />
+          <Property Name="app_child_gender" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Population" Type="int" />
+          <Property Name="Mayor" Type="varchar" MaxLength="50" />
+          <Property Name="Country_Code" Type="char" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Population" Type="int" />
+          <Property Name="Continent" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="departments">
+          <Key>
+            <PropertyRef Name="dept_id" />
+          </Key>
+          <Property Name="dept_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dept_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="dept_head" Type="int" Nullable="false" />
+          <Property Name="dept_phone" Type="varchar" MaxLength="15" />
+          <Property Name="dept_desc" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="section" Type="int" />
+        </EntityType>
+        <EntityType Name="employees">
+          <Key>
+            <PropertyRef Name="emp_id" />
+          </Key>
+          <Property Name="emp_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="emp_position" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="emp_email" Type="varchar" MaxLength="30" />
+          <Property Name="dept_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" />
+        </EntityType>
+        <EntityType Name="HOSPITAL_FEEDBACK">
+          <Key>
+            <PropertyRef Name="id_feedback" />
+          </Key>
+          <Property Name="id_feedback" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="f_name" Type="varchar" MaxLength="20" />
+          <Property Name="l_name" Type="varchar" MaxLength="20" />
+          <Property Name="contact_email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="type_feedback" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="depart_feedback" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="comment_feedback" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="date_feedback" Type="date" Nullable="false" />
+          <Property Name="is_publish" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HOSPITAL_VACANCY">
+          <Key>
+            <PropertyRef Name="vacancy_id" />
+          </Key>
+          <Property Name="vacancy_id" Type="int" Nullable="false" />
+          <Property Name="job_title" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="apply_due_date" Type="date" Nullable="false" />
+          <Property Name="description" Type="varchar(max)" Nullable="false" />
+          <Property Name="description_id" Type="int" Nullable="false" />
+          <Property Name="job_type" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="no_of_vacancy" Type="int" />
+          <Property Name="contact_email" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="image_filename" Type="varchar" MaxLength="1000" />
+          <Property Name="caption_text" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="OPPORTUNITY">
+          <Key>
+            <PropertyRef Name="OPPORTUNITY_ID" />
+          </Key>
+          <Property Name="OPPORTUNITY_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OPPORTUNITY_TITLE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="OPPORTUNITY_DESC" Type="varchar" MaxLength="5000" Nullable="false" />
+          <Property Name="DEPT_ID" Type="int" Nullable="false" />
+          <Property Name="START_DATE" Type="date" Nullable="false" />
+          <Property Name="CONTACT_FN" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CONTACT_LN" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CONTACT_EMAIL" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PASS">
+          <Key>
+            <PropertyRef Name="PASS_ID" />
+          </Key>
+          <Property Name="PASS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USER_ID" Type="int" Nullable="false" />
+          <Property Name="PASS_TYPE" Type="int" Nullable="false" />
+          <Property Name="PURCHASE_DATE" Type="date" Nullable="false" />
+          <Property Name="EXPIRY_DATE" Type="date" Nullable="false" />
+          <Property Name="PURCHASE_SUCCESS" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PASS_TYPE">
+          <Key>
+            <PropertyRef Name="TYPE_ID" />
+          </Key>
+          <Property Name="TYPE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PASS_TYPE" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="PRICE" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="physicians">
+          <Key>
+            <PropertyRef Name="doctor_id" />
+          </Key>
+          <Property Name="doctor_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="emp_id" Type="int" Nullable="false" />
+          <Property Name="department_id" Type="int" Nullable="false" />
+          <Property Name="special1" Type="int" />
+          <Property Name="special2" Type="int" />
+          <Property Name="phone" Type="varchar" MaxLength="30" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="website" Type="varchar" MaxLength="100" />
+          <Property Name="street_address1" Type="varchar" MaxLength="100" />
+          <Property Name="street_address2" Type="varchar" MaxLength="100" />
+          <Property Name="building_name" Type="varchar" MaxLength="100" />
+          <Property Name="city" Type="varchar" MaxLength="50" />
+          <Property Name="province" Type="int" />
+          <Property Name="postal_code" Type="varchar" MaxLength="7" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="fax" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="property_sections">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="section_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="section_desc" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="provinces">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="site_roles">
+          <Key>
+            <PropertyRef Name="role_code" />
+          </Key>
+          <Property Name="role_code" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="role_name" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="role_description" Type="varchar" MaxLength="75" Nullable="false" />
+        </EntityType>
+        <EntityType Name="site_users">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="emp_id" Type="int" />
+          <Property Name="role_code" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="user_first_name" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="user_last_name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="user_dob" Type="date" Nullable="false" />
+          <Property Name="user_gender" Type="varchar" MaxLength="5" />
+          <Property Name="user_address" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="user_city" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="user_province" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="user_postal_code" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="user_email" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="user_username" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="user_password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="user_phone" Type="varchar" MaxLength="15" />
+          <Property Name="user_date_joined" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="specialties">
+          <Key>
+            <PropertyRef Name="special_id" />
+          </Key>
+          <Property Name="special_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="specialty_name" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VEHICLES">
+          <Key>
+            <PropertyRef Name="LICENSE_NUMBER" />
+          </Key>
+          <Property Name="LICENSE_NUMBER" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="USER_ID" Type="int" Nullable="false" />
+          <Property Name="MAKE" Type="varchar" MaxLength="25" />
+          <Property Name="MODEL" Type="varchar" MaxLength="25" />
+          <Property Name="YEAR" Type="datetime" />
+        </EntityType>
+        <EntityType Name="VOLUNTEER">
+          <Key>
+            <PropertyRef Name="VOLUNTEER_ID" />
+          </Key>
+          <Property Name="VOLUNTEER_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIRST_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MIDDLE_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="LAST_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="OCCUPATION" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="OPPORTUNITY_ID" Type="int" Nullable="false" />
+          <Property Name="PHONE_NUMBER" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="STREET_ADDRESS" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CITY" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PROVINCE" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="POSTAL_CODE" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+          <Property Name="DATE_OF_BIRTH" Type="date" Nullable="false" />
+          <Property Name="GENDER" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="LICENCE" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="START_DATE" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="country_city_cc_fk">
+          <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+          <End Role="City" Type="Self.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="Country_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="departments_section_fk">
+          <End Role="property_sections" Type="Self.property_sections" Multiplicity="0..1" />
+          <End Role="departments" Type="Self.departments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="property_sections">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="departments">
+              <PropertyRef Name="section" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_appointments_emp_id">
+          <End Role="employees" Type="Self.employees" Multiplicity="1" />
+          <End Role="appointments" Type="Self.appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="emp_id" />
+            </Principal>
+            <Dependent Role="appointments">
+              <PropertyRef Name="emp_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_appointments_patient_id">
+          <End Role="site_users" Type="Self.site_users" Multiplicity="1" />
+          <End Role="appointments" Type="Self.appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="site_users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="appointments">
+              <PropertyRef Name="patient_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_employees_user_id">
+          <End Role="site_users" Type="Self.site_users" Multiplicity="0..1" />
+          <End Role="employees" Type="Self.employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="site_users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="employees">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_opportunity_dept">
+          <End Role="departments" Type="Self.departments" Multiplicity="1" />
+          <End Role="OPPORTUNITY" Type="Self.OPPORTUNITY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="departments">
+              <PropertyRef Name="dept_id" />
+            </Principal>
+            <Dependent Role="OPPORTUNITY">
+              <PropertyRef Name="DEPT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PASS_TYPE">
+          <End Role="PASS_TYPE" Type="Self.PASS_TYPE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PASS" Type="Self.PASS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PASS_TYPE">
+              <PropertyRef Name="TYPE_ID" />
+            </Principal>
+            <Dependent Role="PASS">
+              <PropertyRef Name="PASS_TYPE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_pass_user">
+          <End Role="site_users" Type="Self.site_users" Multiplicity="1" />
+          <End Role="PASS" Type="Self.PASS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="site_users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="PASS">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_physician_dept_id">
+          <End Role="departments" Type="Self.departments" Multiplicity="1" />
+          <End Role="physicians" Type="Self.physicians" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="departments">
+              <PropertyRef Name="dept_id" />
+            </Principal>
+            <Dependent Role="physicians">
+              <PropertyRef Name="department_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_physician_emp_id">
+          <End Role="employees" Type="Self.employees" Multiplicity="1" />
+          <End Role="physicians" Type="Self.physicians" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="emp_id" />
+            </Principal>
+            <Dependent Role="physicians">
+              <PropertyRef Name="emp_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_physician_provincek">
+          <End Role="provinces" Type="Self.provinces" Multiplicity="0..1" />
+          <End Role="physicians" Type="Self.physicians" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="provinces">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="physicians">
+              <PropertyRef Name="province" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_physician_special1_id">
+          <End Role="specialties" Type="Self.specialties" Multiplicity="0..1" />
+          <End Role="physicians" Type="Self.physicians" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="specialties">
+              <PropertyRef Name="special_id" />
+            </Principal>
+            <Dependent Role="physicians">
+              <PropertyRef Name="special1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_physician_special2_id">
+          <End Role="specialties" Type="Self.specialties" Multiplicity="0..1" />
+          <End Role="physicians" Type="Self.physicians" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="specialties">
+              <PropertyRef Name="special_id" />
+            </Principal>
+            <Dependent Role="physicians">
+              <PropertyRef Name="special2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_physician_user_id">
+          <End Role="site_users" Type="Self.site_users" Multiplicity="0..1" />
+          <End Role="physicians" Type="Self.physicians" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="site_users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="physicians">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_vehicle_user">
+          <End Role="site_users" Type="Self.site_users" Multiplicity="1" />
+          <End Role="VEHICLES" Type="Self.VEHICLES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="site_users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="VEHICLES">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_volunteer_opp">
+          <End Role="OPPORTUNITY" Type="Self.OPPORTUNITY" Multiplicity="1" />
+          <End Role="VOLUNTEER" Type="Self.VOLUNTEER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OPPORTUNITY">
+              <PropertyRef Name="OPPORTUNITY_ID" />
+            </Principal>
+            <Dependent Role="VOLUNTEER">
+              <PropertyRef Name="OPPORTUNITY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MattDatabaseModelStoreContainer">
+          <EntitySet Name="announcements" EntityType="Self.announcements" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="appointments" EntityType="Self.appointments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="departments" EntityType="Self.departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employees" EntityType="Self.employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HOSPITAL_FEEDBACK" EntityType="Self.HOSPITAL_FEEDBACK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HOSPITAL_VACANCY" EntityType="Self.HOSPITAL_VACANCY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OPPORTUNITY" EntityType="Self.OPPORTUNITY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PASS" EntityType="Self.PASS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PASS_TYPE" EntityType="Self.PASS_TYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="physicians" EntityType="Self.physicians" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="property_sections" EntityType="Self.property_sections" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="provinces" EntityType="Self.provinces" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="site_roles" EntityType="Self.site_roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="site_users" EntityType="Self.site_users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="specialties" EntityType="Self.specialties" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VEHICLES" EntityType="Self.VEHICLES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VOLUNTEER" EntityType="Self.VOLUNTEER" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="country_city_cc_fk" Association="Self.country_city_cc_fk">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="City" EntitySet="City" />
+          </AssociationSet>
+          <AssociationSet Name="departments_section_fk" Association="Self.departments_section_fk">
+            <End Role="property_sections" EntitySet="property_sections" />
+            <End Role="departments" EntitySet="departments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_appointments_emp_id" Association="Self.fk_appointments_emp_id">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="appointments" EntitySet="appointments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_appointments_patient_id" Association="Self.fk_appointments_patient_id">
+            <End Role="site_users" EntitySet="site_users" />
+            <End Role="appointments" EntitySet="appointments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_employees_user_id" Association="Self.fk_employees_user_id">
+            <End Role="site_users" EntitySet="site_users" />
+            <End Role="employees" EntitySet="employees" />
+          </AssociationSet>
+          <AssociationSet Name="fk_opportunity_dept" Association="Self.fk_opportunity_dept">
+            <End Role="departments" EntitySet="departments" />
+            <End Role="OPPORTUNITY" EntitySet="OPPORTUNITY" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PASS_TYPE" Association="Self.FK_PASS_TYPE">
+            <End Role="PASS_TYPE" EntitySet="PASS_TYPE" />
+            <End Role="PASS" EntitySet="PASS" />
+          </AssociationSet>
+          <AssociationSet Name="fk_pass_user" Association="Self.fk_pass_user">
+            <End Role="site_users" EntitySet="site_users" />
+            <End Role="PASS" EntitySet="PASS" />
+          </AssociationSet>
+          <AssociationSet Name="fk_physician_dept_id" Association="Self.fk_physician_dept_id">
+            <End Role="departments" EntitySet="departments" />
+            <End Role="physicians" EntitySet="physicians" />
+          </AssociationSet>
+          <AssociationSet Name="fk_physician_emp_id" Association="Self.fk_physician_emp_id">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="physicians" EntitySet="physicians" />
+          </AssociationSet>
+          <AssociationSet Name="fk_physician_provincek" Association="Self.fk_physician_provincek">
+            <End Role="provinces" EntitySet="provinces" />
+            <End Role="physicians" EntitySet="physicians" />
+          </AssociationSet>
+          <AssociationSet Name="fk_physician_special1_id" Association="Self.fk_physician_special1_id">
+            <End Role="specialties" EntitySet="specialties" />
+            <End Role="physicians" EntitySet="physicians" />
+          </AssociationSet>
+          <AssociationSet Name="fk_physician_special2_id" Association="Self.fk_physician_special2_id">
+            <End Role="specialties" EntitySet="specialties" />
+            <End Role="physicians" EntitySet="physicians" />
+          </AssociationSet>
+          <AssociationSet Name="fk_physician_user_id" Association="Self.fk_physician_user_id">
+            <End Role="site_users" EntitySet="site_users" />
+            <End Role="physicians" EntitySet="physicians" />
+          </AssociationSet>
+          <AssociationSet Name="fk_vehicle_user" Association="Self.fk_vehicle_user">
+            <End Role="site_users" EntitySet="site_users" />
+            <End Role="VEHICLES" EntitySet="VEHICLES" />
+          </AssociationSet>
+          <AssociationSet Name="fk_volunteer_opp" Association="Self.fk_volunteer_opp">
+            <End Role="OPPORTUNITY" EntitySet="OPPORTUNITY" />
+            <End Role="VOLUNTEER" EntitySet="VOLUNTEER" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MattDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="announcement">
+          <Key>
+            <PropertyRef Name="ann_id" />
+          </Key>
+          <Property Name="ann_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ann_text" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ann_date" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ann_severity" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ann_visible" Type="Boolean" Nullable="false" />
+          <Property Name="emp_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="site_users" Relationship="Self.fk_announcements_emp_id" FromRole="announcements" ToRole="site_users" />
+          <NavigationProperty Name="employee" Relationship="MattDatabaseModel.fk_announcements_emp_id1" FromRole="announcement" ToRole="employee" />
+        </EntityType>
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="dept_id" />
+          </Key>
+          <Property Name="dept_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dept_head" Type="Int32" Nullable="false" />
+          <Property Name="dept_desc" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="employee" Relationship="Self.fk_departments_emp_id" FromRole="departments" ToRole="employees" />
+          <NavigationProperty Name="employees" Relationship="Self.fk_employees_dept_id" FromRole="departments" ToRole="employees" />
+          <Property Name="dept_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="dept_phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="OPPORTUNITies" Relationship="MattDatabaseModel.fk_opportunity_dept" FromRole="department" ToRole="OPPORTUNITY" />
+          <NavigationProperty Name="physicians" Relationship="MattDatabaseModel.fk_physician_dept_id" FromRole="department" ToRole="physician" />
+          <Property Name="section" Type="Int32" />
+          <NavigationProperty Name="property_sections" Relationship="MattDatabaseModel.departments_section_fk" FromRole="department" ToRole="property_sections" />
+        </EntityType>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="emp_id" />
+          </Key>
+          <Property Name="emp_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="emp_position" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dept_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="departments" Relationship="Self.fk_departments_emp_id" FromRole="employees" ToRole="departments" />
+          <NavigationProperty Name="department" Relationship="Self.fk_employees_dept_id" FromRole="employees" ToRole="departments" />
+          <NavigationProperty Name="site_users" Relationship="Self.fk_users_emp_id" FromRole="employees" ToRole="site_users" />
+          <NavigationProperty Name="announcements" Relationship="MattDatabaseModel.fk_announcements_emp_id1" FromRole="employee" ToRole="announcement" />
+          <Property Name="emp_email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="user_id" Type="Int32" />
+          <NavigationProperty Name="site_users1" Relationship="MattDatabaseModel.fk_employees_user_id" FromRole="employee" ToRole="site_users" />
+          <NavigationProperty Name="appointments" Relationship="MattDatabaseModel.fk_appointments_emp_id" FromRole="employee" ToRole="appointment" />
+          <NavigationProperty Name="physicians" Relationship="MattDatabaseModel.fk_physician_emp_id" FromRole="employee" ToRole="physician" />
+        </EntityType>
+        <EntityType Name="site_roles">
+          <Key>
+            <PropertyRef Name="role_code" />
+          </Key>
+          <Property Name="role_code" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="role_name" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="role_description" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="site_users" Relationship="Self.fk_users_role_code" FromRole="site_roles" ToRole="site_users" />
+        </EntityType>
+        <EntityType Name="site_users">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="emp_id" Type="Int32" />
+          <Property Name="role_code" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="user_first_name" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="user_last_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="user_dob" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="user_gender" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="user_address" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="user_city" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="user_province" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="user_postal_code" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="user_email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="user_username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="user_password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="user_phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="user_date_joined" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="announcements" Relationship="Self.fk_announcements_emp_id" FromRole="site_users" ToRole="announcements" />
+          <NavigationProperty Name="employee" Relationship="Self.fk_users_emp_id" FromRole="site_users" ToRole="employees" />
+          <NavigationProperty Name="site_roles" Relationship="Self.fk_users_role_code" FromRole="site_users" ToRole="site_roles" />
+          <NavigationProperty Name="employees" Relationship="MattDatabaseModel.fk_employees_user_id" FromRole="site_users" ToRole="employee" />
+          <NavigationProperty Name="appointments" Relationship="MattDatabaseModel.fk_appointments_patient_id" FromRole="site_users" ToRole="appointment" />
+          <NavigationProperty Name="PASSes" Relationship="MattDatabaseModel.fk_pass_user" FromRole="site_users" ToRole="PASS" />
+          <NavigationProperty Name="VEHICLES" Relationship="MattDatabaseModel.fk_vehicle_user" FromRole="site_users" ToRole="VEHICLE" />
+          <NavigationProperty Name="physicians" Relationship="MattDatabaseModel.fk_physician_user_id" FromRole="site_users" ToRole="physician" />
+        </EntityType>
+        <Association Name="fk_announcements_emp_id">
+          <End Role="site_users" Type="Self.site_users" Multiplicity="1" />
+          <End Role="announcements" Type="Self.announcement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="site_users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="announcements">
+              <PropertyRef Name="emp_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_departments_emp_id">
+          <End Role="employees" Type="Self.employee" Multiplicity="1" />
+          <End Role="departments" Type="Self.department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="emp_id" />
+            </Principal>
+            <Dependent Role="departments">
+              <PropertyRef Name="dept_head" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_employees_dept_id">
+          <End Role="departments" Type="Self.department" Multiplicity="1" />
+          <End Role="employees" Type="Self.employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="departments">
+              <PropertyRef Name="dept_id" />
+            </Principal>
+            <Dependent Role="employees">
+              <PropertyRef Name="dept_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_users_emp_id">
+          <End Role="employees" Type="Self.employee" Multiplicity="0..1" />
+          <End Role="site_users" Type="Self.site_users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="emp_id" />
+            </Principal>
+            <Dependent Role="site_users">
+              <PropertyRef Name="emp_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_users_role_code">
+          <End Role="site_roles" Type="Self.site_roles" Multiplicity="1" />
+          <End Role="site_users" Type="Self.site_users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="site_roles">
+              <PropertyRef Name="role_code" />
+            </Principal>
+            <Dependent Role="site_users">
+              <PropertyRef Name="role_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MattDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="announcements" EntityType="Self.announcement" />
+          <EntitySet Name="departments" EntityType="Self.department" />
+          <EntitySet Name="employees" EntityType="Self.employee" />
+          <EntitySet Name="site_roles" EntityType="Self.site_roles" />
+          <EntitySet Name="site_users" EntityType="Self.site_users" />
+          <AssociationSet Name="fk_announcements_emp_id" Association="Self.fk_announcements_emp_id">
+            <End Role="site_users" EntitySet="site_users" />
+            <End Role="announcements" EntitySet="announcements" />
+          </AssociationSet>
+          <AssociationSet Name="fk_departments_emp_id" Association="Self.fk_departments_emp_id">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="departments" EntitySet="departments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_employees_dept_id" Association="Self.fk_employees_dept_id">
+            <End Role="departments" EntitySet="departments" />
+            <End Role="employees" EntitySet="employees" />
+          </AssociationSet>
+          <AssociationSet Name="fk_users_emp_id" Association="Self.fk_users_emp_id">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="site_users" EntitySet="site_users" />
+          </AssociationSet>
+          <AssociationSet Name="fk_users_role_code" Association="Self.fk_users_role_code">
+            <End Role="site_roles" EntitySet="site_roles" />
+            <End Role="site_users" EntitySet="site_users" />
+          </AssociationSet>
+          <AssociationSet Name="fk_announcements_emp_id1" Association="MattDatabaseModel.fk_announcements_emp_id1">
+            <End Role="employee" EntitySet="employees" />
+            <End Role="announcement" EntitySet="announcements" />
+          </AssociationSet>
+          <AssociationSet Name="fk_employees_user_id" Association="MattDatabaseModel.fk_employees_user_id">
+            <End Role="site_users" EntitySet="site_users" />
+            <End Role="employee" EntitySet="employees" />
+          </AssociationSet>
+          <EntitySet Name="appointments" EntityType="MattDatabaseModel.appointment" />
+          <EntitySet Name="HOSPITAL_FEEDBACK" EntityType="MattDatabaseModel.HOSPITAL_FEEDBACK" />
+          <EntitySet Name="HOSPITAL_VACANCY" EntityType="MattDatabaseModel.HOSPITAL_VACANCY" />
+          <AssociationSet Name="fk_appointments_emp_id" Association="MattDatabaseModel.fk_appointments_emp_id">
+            <End Role="employee" EntitySet="employees" />
+            <End Role="appointment" EntitySet="appointments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_appointments_patient_id" Association="MattDatabaseModel.fk_appointments_patient_id">
+            <End Role="site_users" EntitySet="site_users" />
+            <End Role="appointment" EntitySet="appointments" />
+          </AssociationSet>
+          <EntitySet Name="OPPORTUNITies" EntityType="MattDatabaseModel.OPPORTUNITY" />
+          <EntitySet Name="VOLUNTEERs" EntityType="MattDatabaseModel.VOLUNTEER" />
+          <AssociationSet Name="fk_opportunity_dept" Association="MattDatabaseModel.fk_opportunity_dept">
+            <End Role="department" EntitySet="departments" />
+            <End Role="OPPORTUNITY" EntitySet="OPPORTUNITies" />
+          </AssociationSet>
+          <AssociationSet Name="fk_volunteer_opp" Association="MattDatabaseModel.fk_volunteer_opp">
+            <End Role="OPPORTUNITY" EntitySet="OPPORTUNITies" />
+            <End Role="VOLUNTEER" EntitySet="VOLUNTEERs" />
+          </AssociationSet>
+          <EntitySet Name="PASSes" EntityType="MattDatabaseModel.PASS" />
+          <EntitySet Name="PASS_TYPE" EntityType="MattDatabaseModel.PASS_TYPE" />
+          <EntitySet Name="VEHICLES" EntityType="MattDatabaseModel.VEHICLE" />
+          <AssociationSet Name="FK_PASS_TYPE" Association="MattDatabaseModel.FK_PASS_TYPE">
+            <End Role="PASS_TYPE" EntitySet="PASS_TYPE" />
+            <End Role="PASS" EntitySet="PASSes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_pass_user" Association="MattDatabaseModel.fk_pass_user">
+            <End Role="site_users" EntitySet="site_users" />
+            <End Role="PASS" EntitySet="PASSes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_vehicle_user" Association="MattDatabaseModel.fk_vehicle_user">
+            <End Role="site_users" EntitySet="site_users" />
+            <End Role="VEHICLE" EntitySet="VEHICLES" />
+          </AssociationSet>
+          <EntitySet Name="provinces" EntityType="MattDatabaseModel.province" />
+          <EntitySet Name="specialties" EntityType="MattDatabaseModel.specialty" />
+          <EntitySet Name="physicians" EntityType="MattDatabaseModel.physician" />
+          <AssociationSet Name="fk_physician_dept_id" Association="MattDatabaseModel.fk_physician_dept_id">
+            <End Role="department" EntitySet="departments" />
+            <End Role="physician" EntitySet="physicians" />
+          </AssociationSet>
+          <AssociationSet Name="fk_physician_emp_id" Association="MattDatabaseModel.fk_physician_emp_id">
+            <End Role="employee" EntitySet="employees" />
+            <End Role="physician" EntitySet="physicians" />
+          </AssociationSet>
+          <AssociationSet Name="fk_physician_provincek" Association="MattDatabaseModel.fk_physician_provincek">
+            <End Role="province" EntitySet="provinces" />
+            <End Role="physician" EntitySet="physicians" />
+          </AssociationSet>
+          <AssociationSet Name="fk_physician_special1_id" Association="MattDatabaseModel.fk_physician_special1_id">
+            <End Role="specialty" EntitySet="specialties" />
+            <End Role="physician" EntitySet="physicians" />
+          </AssociationSet>
+          <AssociationSet Name="fk_physician_special2_id" Association="MattDatabaseModel.fk_physician_special2_id">
+            <End Role="specialty" EntitySet="specialties" />
+            <End Role="physician" EntitySet="physicians" />
+          </AssociationSet>
+          <AssociationSet Name="fk_physician_user_id" Association="MattDatabaseModel.fk_physician_user_id">
+            <End Role="site_users" EntitySet="site_users" />
+            <End Role="physician" EntitySet="physicians" />
+          </AssociationSet>
+          <EntitySet Name="Cities" EntityType="MattDatabaseModel.City" />
+          <EntitySet Name="Countries" EntityType="MattDatabaseModel.Country" />
+          <EntitySet Name="Images" EntityType="MattDatabaseModel.Image" />
+          <EntitySet Name="property_sections" EntityType="MattDatabaseModel.property_sections" />
+          <AssociationSet Name="country_city_cc_fk" Association="MattDatabaseModel.country_city_cc_fk">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="City" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="departments_section_fk" Association="MattDatabaseModel.departments_section_fk">
+            <End Role="property_sections" EntitySet="property_sections" />
+            <End Role="department" EntitySet="departments" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="fk_announcements_emp_id1">
+          <End Type="MattDatabaseModel.employee" Role="employee" Multiplicity="1" />
+          <End Type="MattDatabaseModel.announcement" Role="announcement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="emp_id" />
+            </Principal>
+            <Dependent Role="announcement">
+              <PropertyRef Name="emp_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_employees_user_id">
+          <End Type="MattDatabaseModel.site_users" Role="site_users" Multiplicity="0..1" />
+          <End Type="MattDatabaseModel.employee" Role="employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="site_users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="employee">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="appointment">
+          <Key>
+            <PropertyRef Name="app_id" />
+          </Key>
+          <Property Name="app_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="patient_id" Type="Int32" Nullable="false" />
+          <Property Name="emp_id" Type="Int32" Nullable="false" />
+          <Property Name="app_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="app_time" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="app_reason" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="app_comment" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="app_child" Type="Boolean" Nullable="false" />
+          <Property Name="app_child_first" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="app_child_last" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="app_child_dob" Type="DateTime" Precision="0" />
+          <Property Name="app_child_gender" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="employee" Relationship="MattDatabaseModel.fk_appointments_emp_id" FromRole="appointment" ToRole="employee" />
+          <NavigationProperty Name="site_users" Relationship="MattDatabaseModel.fk_appointments_patient_id" FromRole="appointment" ToRole="site_users" />
+        </EntityType>
+        <EntityType Name="HOSPITAL_FEEDBACK">
+          <Key>
+            <PropertyRef Name="id_feedback" />
+          </Key>
+          <Property Name="id_feedback" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="f_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="l_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="contact_email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="type_feedback" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="depart_feedback" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="comment_feedback" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="date_feedback" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="is_publish" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HOSPITAL_VACANCY">
+          <Key>
+            <PropertyRef Name="vacancy_id" />
+          </Key>
+          <Property Name="vacancy_id" Type="Int32" Nullable="false" />
+          <Property Name="job_title" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="apply_due_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="description_id" Type="Int32" Nullable="false" />
+          <Property Name="job_type" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="no_of_vacancy" Type="Int32" />
+          <Property Name="contact_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="fk_appointments_emp_id">
+          <End Type="MattDatabaseModel.employee" Role="employee" Multiplicity="1" />
+          <End Type="MattDatabaseModel.appointment" Role="appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="emp_id" />
+            </Principal>
+            <Dependent Role="appointment">
+              <PropertyRef Name="emp_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_appointments_patient_id">
+          <End Type="MattDatabaseModel.site_users" Role="site_users" Multiplicity="1" />
+          <End Type="MattDatabaseModel.appointment" Role="appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="site_users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="appointment">
+              <PropertyRef Name="patient_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="OPPORTUNITY">
+          <Key>
+            <PropertyRef Name="OPPORTUNITY_ID" />
+          </Key>
+          <Property Name="OPPORTUNITY_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OPPORTUNITY_TITLE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OPPORTUNITY_DESC" Type="String" Nullable="false" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="DEPT_ID" Type="Int32" Nullable="false" />
+          <Property Name="START_DATE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CONTACT_FN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CONTACT_LN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CONTACT_EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="department" Relationship="MattDatabaseModel.fk_opportunity_dept" FromRole="OPPORTUNITY" ToRole="department" />
+          <NavigationProperty Name="VOLUNTEERs" Relationship="MattDatabaseModel.fk_volunteer_opp" FromRole="OPPORTUNITY" ToRole="VOLUNTEER" />
+        </EntityType>
+        <EntityType Name="VOLUNTEER">
+          <Key>
+            <PropertyRef Name="VOLUNTEER_ID" />
+          </Key>
+          <Property Name="VOLUNTEER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIRST_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MIDDLE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LAST_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OCCUPATION" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OPPORTUNITY_ID" Type="Int32" Nullable="false" />
+          <Property Name="PHONE_NUMBER" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="STREET_ADDRESS" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CITY" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PROVINCE" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="POSTAL_CODE" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DATE_OF_BIRTH" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="GENDER" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="LICENCE" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="START_DATE" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="OPPORTUNITY" Relationship="MattDatabaseModel.fk_volunteer_opp" FromRole="VOLUNTEER" ToRole="OPPORTUNITY" />
+        </EntityType>
+        <Association Name="fk_opportunity_dept">
+          <End Type="MattDatabaseModel.department" Role="department" Multiplicity="1" />
+          <End Type="MattDatabaseModel.OPPORTUNITY" Role="OPPORTUNITY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="dept_id" />
+            </Principal>
+            <Dependent Role="OPPORTUNITY">
+              <PropertyRef Name="DEPT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_volunteer_opp">
+          <End Type="MattDatabaseModel.OPPORTUNITY" Role="OPPORTUNITY" Multiplicity="1" />
+          <End Type="MattDatabaseModel.VOLUNTEER" Role="VOLUNTEER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OPPORTUNITY">
+              <PropertyRef Name="OPPORTUNITY_ID" />
+            </Principal>
+            <Dependent Role="VOLUNTEER">
+              <PropertyRef Name="OPPORTUNITY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PASS">
+          <Key>
+            <PropertyRef Name="PASS_ID" />
+          </Key>
+          <Property Name="PASS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="PASS_TYPE" Type="Int32" Nullable="false" />
+          <Property Name="PURCHASE_DATE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EXPIRY_DATE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PURCHASE_SUCCESS" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PASS_TYPE1" Relationship="MattDatabaseModel.FK_PASS_TYPE" FromRole="PASS" ToRole="PASS_TYPE" />
+          <NavigationProperty Name="site_users" Relationship="MattDatabaseModel.fk_pass_user" FromRole="PASS" ToRole="site_users" />
+        </EntityType>
+        <EntityType Name="PASS_TYPE">
+          <Key>
+            <PropertyRef Name="TYPE_ID" />
+          </Key>
+          <Property Name="TYPE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PASS_TYPE1" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="PRICE" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PASSes" Relationship="MattDatabaseModel.FK_PASS_TYPE" FromRole="PASS_TYPE" ToRole="PASS" />
+        </EntityType>
+        <EntityType Name="VEHICLE">
+          <Key>
+            <PropertyRef Name="LICENSE_NUMBER" />
+          </Key>
+          <Property Name="LICENSE_NUMBER" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="MAKE" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="MODEL" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="YEAR" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="site_users" Relationship="MattDatabaseModel.fk_vehicle_user" FromRole="VEHICLE" ToRole="site_users" />
+        </EntityType>
+        <Association Name="FK_PASS_TYPE">
+          <End Type="MattDatabaseModel.PASS_TYPE" Role="PASS_TYPE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="MattDatabaseModel.PASS" Role="PASS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PASS_TYPE">
+              <PropertyRef Name="TYPE_ID" />
+            </Principal>
+            <Dependent Role="PASS">
+              <PropertyRef Name="PASS_TYPE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_pass_user">
+          <End Type="MattDatabaseModel.site_users" Role="site_users" Multiplicity="1" />
+          <End Type="MattDatabaseModel.PASS" Role="PASS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="site_users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="PASS">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_vehicle_user">
+          <End Type="MattDatabaseModel.site_users" Role="site_users" Multiplicity="1" />
+          <End Type="MattDatabaseModel.VEHICLE" Role="VEHICLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="site_users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="VEHICLE">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="province">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="physicians" Relationship="MattDatabaseModel.fk_physician_provincek" FromRole="province" ToRole="physician" />
+        </EntityType>
+        <EntityType Name="specialty">
+          <Key>
+            <PropertyRef Name="special_id" />
+          </Key>
+          <Property Name="special_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="specialty_name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="physicians" Relationship="MattDatabaseModel.fk_physician_special1_id" FromRole="specialty" ToRole="physician" />
+          <NavigationProperty Name="physicians1" Relationship="MattDatabaseModel.fk_physician_special2_id" FromRole="specialty" ToRole="physician" />
+        </EntityType>
+        <EntityType Name="physician">
+          <Key>
+            <PropertyRef Name="doctor_id" />
+          </Key>
+          <Property Name="doctor_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="emp_id" Type="Int32" Nullable="false" />
+          <Property Name="department_id" Type="Int32" Nullable="false" />
+          <Property Name="special1" Type="Int32" />
+          <Property Name="special2" Type="Int32" />
+          <Property Name="phone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="website" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="street_address1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="street_address2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="building_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="province" Type="Int32" />
+          <Property Name="postal_code" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="user_id" Type="Int32" />
+          <NavigationProperty Name="department" Relationship="MattDatabaseModel.fk_physician_dept_id" FromRole="physician" ToRole="department" />
+          <NavigationProperty Name="employee" Relationship="MattDatabaseModel.fk_physician_emp_id" FromRole="physician" ToRole="employee" />
+          <NavigationProperty Name="province1" Relationship="MattDatabaseModel.fk_physician_provincek" FromRole="physician" ToRole="province" />
+          <NavigationProperty Name="specialty" Relationship="MattDatabaseModel.fk_physician_special1_id" FromRole="physician" ToRole="specialty" />
+          <NavigationProperty Name="specialty1" Relationship="MattDatabaseModel.fk_physician_special2_id" FromRole="physician" ToRole="specialty" />
+          <NavigationProperty Name="site_users" Relationship="MattDatabaseModel.fk_physician_user_id" FromRole="physician" ToRole="site_users" />
+          <Property Name="fax" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="fk_physician_dept_id">
+          <End Type="MattDatabaseModel.department" Role="department" Multiplicity="1" />
+          <End Type="MattDatabaseModel.physician" Role="physician" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="dept_id" />
+            </Principal>
+            <Dependent Role="physician">
+              <PropertyRef Name="department_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_physician_emp_id">
+          <End Type="MattDatabaseModel.employee" Role="employee" Multiplicity="1" />
+          <End Type="MattDatabaseModel.physician" Role="physician" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="emp_id" />
+            </Principal>
+            <Dependent Role="physician">
+              <PropertyRef Name="emp_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_physician_provincek">
+          <End Type="MattDatabaseModel.province" Role="province" Multiplicity="0..1" />
+          <End Type="MattDatabaseModel.physician" Role="physician" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="province">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="physician">
+              <PropertyRef Name="province" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_physician_special1_id">
+          <End Type="MattDatabaseModel.specialty" Role="specialty" Multiplicity="0..1" />
+          <End Type="MattDatabaseModel.physician" Role="physician" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="specialty">
+              <PropertyRef Name="special_id" />
+            </Principal>
+            <Dependent Role="physician">
+              <PropertyRef Name="special1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_physician_special2_id">
+          <End Type="MattDatabaseModel.specialty" Role="specialty" Multiplicity="0..1" />
+          <End Type="MattDatabaseModel.physician" Role="physician" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="specialty">
+              <PropertyRef Name="special_id" />
+            </Principal>
+            <Dependent Role="physician">
+              <PropertyRef Name="special2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_physician_user_id">
+          <End Type="MattDatabaseModel.site_users" Role="site_users" Multiplicity="0..1" />
+          <End Type="MattDatabaseModel.physician" Role="physician" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="site_users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="physician">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Population" Type="Int32" />
+          <Property Name="Mayor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Country_Code" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Country" Relationship="MattDatabaseModel.country_city_cc_fk" FromRole="City" ToRole="Country" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Population" Type="Int32" />
+          <Property Name="Continent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cities" Relationship="MattDatabaseModel.country_city_cc_fk" FromRole="Country" ToRole="City" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="image_filename" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="caption_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="property_sections">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="section_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="section_desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="departments" Relationship="MattDatabaseModel.departments_section_fk" FromRole="property_sections" ToRole="department" />
+        </EntityType>
+        <Association Name="country_city_cc_fk">
+          <End Type="MattDatabaseModel.Country" Role="Country" Multiplicity="0..1" />
+          <End Type="MattDatabaseModel.City" Role="City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="Country_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="departments_section_fk">
+          <End Type="MattDatabaseModel.property_sections" Role="property_sections" Multiplicity="0..1" />
+          <End Type="MattDatabaseModel.department" Role="department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="property_sections">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="department">
+              <PropertyRef Name="section" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MattDatabaseModelStoreContainer" CdmEntityContainer="MattDatabaseEntities">
+          <EntitySetMapping Name="announcements">
+            <EntityTypeMapping TypeName="MattDatabaseModel.announcement">
+              <MappingFragment StoreEntitySet="announcements">
+                <ScalarProperty Name="ann_id" ColumnName="ann_id" />
+                <ScalarProperty Name="ann_text" ColumnName="ann_text" />
+                <ScalarProperty Name="ann_date" ColumnName="ann_date" />
+                <ScalarProperty Name="ann_severity" ColumnName="ann_severity" />
+                <ScalarProperty Name="ann_visible" ColumnName="ann_visible" />
+                <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="departments">
+            <EntityTypeMapping TypeName="MattDatabaseModel.department">
+              <MappingFragment StoreEntitySet="departments">
+                <ScalarProperty Name="section" ColumnName="section" />
+                <ScalarProperty Name="dept_phone" ColumnName="dept_phone" />
+                <ScalarProperty Name="dept_name" ColumnName="dept_name" />
+                <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+                <ScalarProperty Name="dept_head" ColumnName="dept_head" />
+                <ScalarProperty Name="dept_desc" ColumnName="dept_desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employees">
+            <EntityTypeMapping TypeName="MattDatabaseModel.employee">
+              <MappingFragment StoreEntitySet="employees">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="emp_email" ColumnName="emp_email" />
+                <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+                <ScalarProperty Name="emp_position" ColumnName="emp_position" />
+                <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="site_roles">
+            <EntityTypeMapping TypeName="MattDatabaseModel.site_roles">
+              <MappingFragment StoreEntitySet="site_roles">
+                <ScalarProperty Name="role_code" ColumnName="role_code" />
+                <ScalarProperty Name="role_name" ColumnName="role_name" />
+                <ScalarProperty Name="role_description" ColumnName="role_description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="site_users">
+            <EntityTypeMapping TypeName="MattDatabaseModel.site_users">
+              <MappingFragment StoreEntitySet="site_users">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+                <ScalarProperty Name="role_code" ColumnName="role_code" />
+                <ScalarProperty Name="user_first_name" ColumnName="user_first_name" />
+                <ScalarProperty Name="user_last_name" ColumnName="user_last_name" />
+                <ScalarProperty Name="user_dob" ColumnName="user_dob" />
+                <ScalarProperty Name="user_gender" ColumnName="user_gender" />
+                <ScalarProperty Name="user_address" ColumnName="user_address" />
+                <ScalarProperty Name="user_city" ColumnName="user_city" />
+                <ScalarProperty Name="user_province" ColumnName="user_province" />
+                <ScalarProperty Name="user_postal_code" ColumnName="user_postal_code" />
+                <ScalarProperty Name="user_email" ColumnName="user_email" />
+                <ScalarProperty Name="user_username" ColumnName="user_username" />
+                <ScalarProperty Name="user_password" ColumnName="user_password" />
+                <ScalarProperty Name="user_phone" ColumnName="user_phone" />
+                <ScalarProperty Name="user_date_joined" ColumnName="user_date_joined" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="appointments">
+            <EntityTypeMapping TypeName="MattDatabaseModel.appointment">
+              <MappingFragment StoreEntitySet="appointments">
+                <ScalarProperty Name="app_child_gender" ColumnName="app_child_gender" />
+                <ScalarProperty Name="app_child_dob" ColumnName="app_child_dob" />
+                <ScalarProperty Name="app_child_last" ColumnName="app_child_last" />
+                <ScalarProperty Name="app_child_first" ColumnName="app_child_first" />
+                <ScalarProperty Name="app_child" ColumnName="app_child" />
+                <ScalarProperty Name="app_comment" ColumnName="app_comment" />
+                <ScalarProperty Name="app_reason" ColumnName="app_reason" />
+                <ScalarProperty Name="app_time" ColumnName="app_time" />
+                <ScalarProperty Name="app_date" ColumnName="app_date" />
+                <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+                <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+                <ScalarProperty Name="app_id" ColumnName="app_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HOSPITAL_FEEDBACK">
+            <EntityTypeMapping TypeName="MattDatabaseModel.HOSPITAL_FEEDBACK">
+              <MappingFragment StoreEntitySet="HOSPITAL_FEEDBACK">
+                <ScalarProperty Name="is_publish" ColumnName="is_publish" />
+                <ScalarProperty Name="date_feedback" ColumnName="date_feedback" />
+                <ScalarProperty Name="comment_feedback" ColumnName="comment_feedback" />
+                <ScalarProperty Name="depart_feedback" ColumnName="depart_feedback" />
+                <ScalarProperty Name="type_feedback" ColumnName="type_feedback" />
+                <ScalarProperty Name="contact_email" ColumnName="contact_email" />
+                <ScalarProperty Name="l_name" ColumnName="l_name" />
+                <ScalarProperty Name="f_name" ColumnName="f_name" />
+                <ScalarProperty Name="id_feedback" ColumnName="id_feedback" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HOSPITAL_VACANCY">
+            <EntityTypeMapping TypeName="MattDatabaseModel.HOSPITAL_VACANCY">
+              <MappingFragment StoreEntitySet="HOSPITAL_VACANCY">
+                <ScalarProperty Name="contact_email" ColumnName="contact_email" />
+                <ScalarProperty Name="no_of_vacancy" ColumnName="no_of_vacancy" />
+                <ScalarProperty Name="job_type" ColumnName="job_type" />
+                <ScalarProperty Name="description_id" ColumnName="description_id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="apply_due_date" ColumnName="apply_due_date" />
+                <ScalarProperty Name="job_title" ColumnName="job_title" />
+                <ScalarProperty Name="vacancy_id" ColumnName="vacancy_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OPPORTUNITies">
+            <EntityTypeMapping TypeName="MattDatabaseModel.OPPORTUNITY">
+              <MappingFragment StoreEntitySet="OPPORTUNITY">
+                <ScalarProperty Name="CONTACT_EMAIL" ColumnName="CONTACT_EMAIL" />
+                <ScalarProperty Name="CONTACT_LN" ColumnName="CONTACT_LN" />
+                <ScalarProperty Name="CONTACT_FN" ColumnName="CONTACT_FN" />
+                <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+                <ScalarProperty Name="DEPT_ID" ColumnName="DEPT_ID" />
+                <ScalarProperty Name="OPPORTUNITY_DESC" ColumnName="OPPORTUNITY_DESC" />
+                <ScalarProperty Name="OPPORTUNITY_TITLE" ColumnName="OPPORTUNITY_TITLE" />
+                <ScalarProperty Name="OPPORTUNITY_ID" ColumnName="OPPORTUNITY_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VOLUNTEERs">
+            <EntityTypeMapping TypeName="MattDatabaseModel.VOLUNTEER">
+              <MappingFragment StoreEntitySet="VOLUNTEER">
+                <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+                <ScalarProperty Name="LICENCE" ColumnName="LICENCE" />
+                <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+                <ScalarProperty Name="DATE_OF_BIRTH" ColumnName="DATE_OF_BIRTH" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="POSTAL_CODE" ColumnName="POSTAL_CODE" />
+                <ScalarProperty Name="PROVINCE" ColumnName="PROVINCE" />
+                <ScalarProperty Name="CITY" ColumnName="CITY" />
+                <ScalarProperty Name="STREET_ADDRESS" ColumnName="STREET_ADDRESS" />
+                <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
+                <ScalarProperty Name="OPPORTUNITY_ID" ColumnName="OPPORTUNITY_ID" />
+                <ScalarProperty Name="OCCUPATION" ColumnName="OCCUPATION" />
+                <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+                <ScalarProperty Name="MIDDLE_NAME" ColumnName="MIDDLE_NAME" />
+                <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+                <ScalarProperty Name="VOLUNTEER_ID" ColumnName="VOLUNTEER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PASSes">
+            <EntityTypeMapping TypeName="MattDatabaseModel.PASS">
+              <MappingFragment StoreEntitySet="PASS">
+                <ScalarProperty Name="PURCHASE_SUCCESS" ColumnName="PURCHASE_SUCCESS" />
+                <ScalarProperty Name="EXPIRY_DATE" ColumnName="EXPIRY_DATE" />
+                <ScalarProperty Name="PURCHASE_DATE" ColumnName="PURCHASE_DATE" />
+                <ScalarProperty Name="PASS_TYPE" ColumnName="PASS_TYPE" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="PASS_ID" ColumnName="PASS_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PASS_TYPE">
+            <EntityTypeMapping TypeName="MattDatabaseModel.PASS_TYPE">
+              <MappingFragment StoreEntitySet="PASS_TYPE">
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="PASS_TYPE1" ColumnName="PASS_TYPE" />
+                <ScalarProperty Name="TYPE_ID" ColumnName="TYPE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VEHICLES">
+            <EntityTypeMapping TypeName="MattDatabaseModel.VEHICLE">
+              <MappingFragment StoreEntitySet="VEHICLES">
+                <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+                <ScalarProperty Name="MODEL" ColumnName="MODEL" />
+                <ScalarProperty Name="MAKE" ColumnName="MAKE" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="LICENSE_NUMBER" ColumnName="LICENSE_NUMBER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="provinces">
+            <EntityTypeMapping TypeName="MattDatabaseModel.province">
+              <MappingFragment StoreEntitySet="provinces">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="specialties">
+            <EntityTypeMapping TypeName="MattDatabaseModel.specialty">
+              <MappingFragment StoreEntitySet="specialties">
+                <ScalarProperty Name="specialty_name" ColumnName="specialty_name" />
+                <ScalarProperty Name="special_id" ColumnName="special_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="physicians">
+            <EntityTypeMapping TypeName="MattDatabaseModel.physician">
+              <MappingFragment StoreEntitySet="physicians">
+                <ScalarProperty Name="fax" ColumnName="fax" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="postal_code" ColumnName="postal_code" />
+                <ScalarProperty Name="province" ColumnName="province" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="building_name" ColumnName="building_name" />
+                <ScalarProperty Name="street_address2" ColumnName="street_address2" />
+                <ScalarProperty Name="street_address1" ColumnName="street_address1" />
+                <ScalarProperty Name="website" ColumnName="website" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="special2" ColumnName="special2" />
+                <ScalarProperty Name="special1" ColumnName="special1" />
+                <ScalarProperty Name="department_id" ColumnName="department_id" />
+                <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+                <ScalarProperty Name="doctor_id" ColumnName="doctor_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="MattDatabaseModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="Country_Code" ColumnName="Country_Code" />
+                <ScalarProperty Name="Mayor" ColumnName="Mayor" />
+                <ScalarProperty Name="Population" ColumnName="Population" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="MattDatabaseModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="Continent" ColumnName="Continent" />
+                <ScalarProperty Name="Population" ColumnName="Population" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="MattDatabaseModel.Image">
+              <MappingFragment StoreEntitySet="Images">
+                <ScalarProperty Name="caption_text" ColumnName="caption_text" />
+                <ScalarProperty Name="image_filename" ColumnName="image_filename" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="property_sections">
+            <EntityTypeMapping TypeName="MattDatabaseModel.property_sections">
+              <MappingFragment StoreEntitySet="property_sections">
+                <ScalarProperty Name="section_desc" ColumnName="section_desc" />
+                <ScalarProperty Name="section_name" ColumnName="section_name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

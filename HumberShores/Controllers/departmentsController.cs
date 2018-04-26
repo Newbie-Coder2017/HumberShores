@@ -1,0 +1,214 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+using HumberShores.Models;
+
+namespace HumberShores.Controllers
+{
+    public class departmentsController : Controller
+    {
+        private MattDatabaseEntities db = new MattDatabaseEntities();
+
+        // GET: departments
+        public ActionResult Index()
+        {
+			//var departments = db.departments.Include(d => d.employee).Include(d => d.property_sections);
+			//return View(departments.ToList());
+
+			var depts = db.departments.OrderBy(model => model.dept_name);
+			return View(depts);
+		}
+
+        // GET: departments/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            department department = db.departments.Find(id);
+            if (department == null)
+            {
+                return HttpNotFound();
+            }
+            return View(department);
+        }
+
+		// GET: departments/Create
+		[Authorize(Roles = "Admin, Super Admin")]
+		public ActionResult Create()
+        {
+            ViewBag.dept_head = GetEmployeeNamesEmpIds();
+			ViewBag.sections = db.property_sections;
+			return View();
+        }
+
+        // POST: departments/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+		[Authorize(Roles = "Admin, Super Admin")]
+		public ActionResult Create([Bind(Include = "dept_id,dept_head,dept_desc,dept_name,dept_phone,section")] department department)
+        {
+            if (ModelState.IsValid)
+            {
+                db.departments.Add(department);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.dept_head = GetEmployeeNamesEmpIds();
+			ViewBag.sections = db.property_sections;
+			return View(department);
+        }
+
+		// GET: departments/Edit/5
+		[Authorize(Roles = "Admin, Super Admin")]
+		public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+				return RedirectToAction("Index");
+			}
+            department department = db.departments.Find(id);
+            if (department == null)
+            {
+                return HttpNotFound();
+            }
+			ViewBag.dept_head = GetEmployeeNamesEmpIds();
+			ViewBag.sections = db.property_sections;
+			return View(department);
+        }
+
+		// POST: departments/Edit/5
+		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+		// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+		[Authorize(Roles = "Admin, Super Admin")]
+		[HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "dept_id,dept_head,dept_desc,dept_name,dept_phone,section")] department department)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(department).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.dept_head = new SelectList(db.employees, "emp_id", "emp_position", department.dept_head);
+			ViewBag.sections = db.property_sections;
+			return View(department);
+        }
+
+		// GET: departments/Delete/5
+		[Authorize(Roles = "Admin, Super Admin")]
+		public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            department department = db.departments.Find(id);
+            if (department == null)
+            {
+                return HttpNotFound();
+            }
+            return View(department);
+        }
+
+        // POST: departments/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+		[Authorize(Roles = "Admin, Super Admin")]
+		public ActionResult DeleteConfirmed(int id)
+        {
+            department department = db.departments.Find(id);
+            db.departments.Remove(department);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+		[HttpPost]
+		public PartialViewResult ShowDepartment(FormCollection form)
+		{
+			int dept_id;
+			bool result = Int32.TryParse(form["departments"], out dept_id);
+
+			if (!result)
+			{
+				return PartialView("~/Views/departments/_ShowDepartmentEmpty.cshtml");
+			}
+
+			department depts = db.departments.SingleOrDefault(d => d.dept_id == dept_id);
+
+			return PartialView("~/Views/departments/_ShowDepartment.cshtml", depts);
+		}
+
+		[HttpPost]
+		public PartialViewResult SectionDepartments(FormCollection form)
+		{
+			int section_id;
+			bool result = Int32.TryParse(form["section"], out section_id);
+			var deptsInSection = db.departments.Where(d => d.section == section_id);
+			List<department> depts = new List<department>();
+
+			foreach (var item in deptsInSection)
+			{
+				depts.Add(item);
+			}
+
+			return PartialView("~/Views/departments/_SectionDepartments.cshtml", depts);
+		}
+
+		private List<SelectListItem> GetEmployeeNamesEmpIds()
+		{
+			List<SelectListItem> EmployeeNamesEmpIds = new List<SelectListItem>();
+			var result = from e in db.employees
+						 join u in db.site_users
+						 on e.user_id equals u.user_id
+						 //where e.position == "head" //Limit to employees of position Head
+						 select new
+						 {
+							 fname = u.user_first_name,
+							 lname = u.user_last_name,
+							 empid = e.emp_id
+						 };
+
+
+			foreach (var r in result)
+			{
+				//Build List to send to the view
+				EmployeeNamesEmpIds.Add(new SelectListItem() { Value = r.empid.ToString(), Text = r.fname + " " + r.lname });
+			}
+
+			return EmployeeNamesEmpIds;//Holds the list of the employee IDs and Names of the employees with position "head"
+		}
+
+		[HttpPost]
+		public PartialViewResult SectionDescription(FormCollection form)
+		{
+			int section_id;
+
+			bool result = Int32.TryParse(form["section"], out section_id);
+			property_sections prop_section = new property_sections();
+
+			prop_section = db.property_sections.SingleOrDefault(model => model.id == section_id);
+			return PartialView("~/Views/departments/_SectionDescription.cshtml", prop_section);
+		}
+
+	}
+}

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<HumberShores.Models.employee>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.emp_position)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.department.dept_desc)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.emp_position)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.department.dept_desc)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.emp_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.emp_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.emp_id })
+        </td>
+    </tr>
+}
+
+</table>

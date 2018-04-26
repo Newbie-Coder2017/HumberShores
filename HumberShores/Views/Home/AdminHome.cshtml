@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Admin Home";
+}
+
+<div class="container">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+        <li class="active"><a href="#">Administrator Home</a></li>
+    </ul>
+    <div class="annHomeHead">
+        <h2>Administrator Home</h2>
+        <p class="serviceBtn"><a class="btn btn-default" href="@Url.Action("Logout", "Home")">Sign Out</a></p>
+    </div>
+    <p id="adminWelcome">Welcome back, @Session["first"]</p>
+    <hr />
+    @Html.Partial("AdminDash")
+    <div class="col-sm-7 featureContent">
+        <h3>Welcome to the Administrator Home Page</h3>
+        <p>From this dashboard an admin has access to all the features of Humber Shores Hospital's website. As an admin you can maintain all aspects of the sites data, be it editing announcements, cancelling patient appointments, or viewing visitor donations.</p>
+        <p></p>
+    </div>
+</div>
+

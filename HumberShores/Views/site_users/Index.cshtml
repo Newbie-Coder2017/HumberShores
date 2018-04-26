@@ -1,0 +1,59 @@
+﻿@model IEnumerable<HumberShores.Models.site_users>
+
+@{
+    ViewBag.Title = "Users";
+}
+
+<div class="container">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+        <li><a href="@Url.Action("AdminHome", "Home")">Administrator Home</a></li>
+        <li class="active">User Maintenance</li>
+    </ul>
+    <div class="annHomeHead">
+        <h2>View/Edit User Accounts</h2>
+    </div>
+    <p id="adminWelcome">Welcome back, @Session["first"]</p>
+    <p class="serviceBtn">@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-default" })</p>
+    <hr />
+    @Html.Partial("AdminDash")
+    <main class="col-sm-7 featureContent">
+        @foreach (var item in Model)
+        {
+            <div>
+                <h3>@Html.DisplayNameFor(model => model.user_first_name)</h3>
+                <p>@Html.DisplayFor(modelItem => item.user_first_name)</p>
+            </div>
+            <div>
+                <h3>@Html.DisplayNameFor(model => model.user_last_name)</h3>
+                <p>@Html.DisplayFor(modelItem => item.user_last_name)</p>
+            </div>
+            <div>
+                <h3>@Html.DisplayNameFor(model => model.user_email)</h3>
+                <p>@Html.DisplayFor(modelItem => item.user_email)</p>
+            </div>
+            <div>
+                <h3>@Html.DisplayNameFor(model => model.user_username)</h3>
+                <p>@Html.DisplayFor(modelItem => item.user_username)</p>
+            </div>
+            <div>
+                <h3>@Html.DisplayNameFor(model => model.user_date_joined)</h3>
+                <p>@Html.DisplayFor(modelItem => item.user_date_joined)</p>
+            </div>
+            <div>
+                <h3>@Html.DisplayNameFor(model => model.site_roles.role_name)</h3>
+                <p>@Html.DisplayFor(modelItem => item.site_roles.role_name)</p>
+            </div>
+            <div>
+                <h3>@Html.DisplayNameFor(model => model.employee.emp_id)</h3>
+                <p>@Html.DisplayFor(modelItem => item.employee.emp_id)</p>
+            </div>
+            <div>
+                <p class="serviceBtn annCrud">@Html.ActionLink("Update User", "Edit", new { id = item.user_id }, new { @class = "btn btn-default" })</p>
+                <p class="serviceBtn annCrud">@Html.ActionLink("Delete User", "Delete", new { id = item.user_id }, new { @class = "btn btn-default" })</p>
+                <p class="serviceBtn annCrud">@Html.ActionLink("User Details", "Details", new { id = item.user_id }, new { @class = "btn btn-default" })</p>
+            </div>
+            <hr />
+        }
+    </main>
+</div>
