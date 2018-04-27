@@ -2,68 +2,67 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_headFoot.cshtml";
 }
 
-<h2>Index</h2>
+<div class="container">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+        @if (User.IsInRole("User"))
+        {
+            <li><a href="@Url.Action("UserHome", "Home")">User Home</a></li>
+        }
+        else
+        {
+            <li><a href="@Url.Action("AdminHome", "Home")">Administrator Home</a></li>
+        }
+    </ul>
+    <h2>Current Vacancies</h2>
+        <div class="col-lg-6 col-lg-offset-3">
+            @foreach (var item in Model)
+            {
+                <div id="@item.vacancy_id">
+                    <div>
+                        <p><strong>Vacancy ID:</strong></p><p>@item.vacancy_id</p>
+                    </div>
+                    <div>
+                        <p><strong>Job Title:</strong></p><p>@item.job_title</p>
+                    </div>
+                    <div>
+                        <p><strong>Apply Due Date:</strong></p><p>@item.apply_due_date</p>
+                    </div>
+                    <div>
+                        <p><strong>Description:</strong></p><p>@item.description</p>
+                    </div>
+                    <div>
+                        <p><strong>Department ID:</strong></p><p>@item.description_id</p>
+                    </div>
+                    <div>
+                        <p><strong>Job Type:</strong></p><p>@item.job_type</p>
+                    </div>
+                    <div>
+                        <p><strong>Number of Vacancies:</strong></p><p>@item.no_of_vacancy</p>
+                    </div>
+                    @*<div>
+                            <p><strong>Contact Email:</strong></p><p>@item.contact_email</p>
+                        </div>*@
+                </div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.job_title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.apply_due_date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.description_id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.job_type)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.no_of_vacancy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.contact_email)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.job_title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.apply_due_date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.description_id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.job_type)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.no_of_vacancy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.contact_email)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.vacancy_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.vacancy_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.vacancy_id })
-        </td>
-    </tr>
-}
 
-</table>
+                <div>
+                    @if (User.IsInRole("Admin"))
+    {
+                <p class="serviceBtn annCrud"> @Html.ActionLink("Edit", "Edit", "HOSPITAL_VACANCY", new { id = item.vacancy_id }, null)</p>
+                @: |
+                <p class="serviceBtn annCrud">
+                    @Html.ActionLink("Delete", "Delete", "HOSPITAL_VACANCY", new { id = item.vacancy_id }, null)
+                </p>
+
+                    }
+
+                </div>
+                <hr />
+            }
+        </div>
+    </div>
