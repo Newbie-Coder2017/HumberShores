@@ -53,7 +53,8 @@
                 <div>
                     @if (User.IsInRole("Admin"))
     {
-                <p class="serviceBtn annCrud"> @Html.ActionLink("Edit", "Edit", "HOSPITAL_VACANCY", new { id = item.vacancy_id }, null)</p>
+                <p class="serviceBtn annCrud"> 
+                    @Html.ActionLink("Edit", "Edit", "HOSPITAL_VACANCY", new { id = item.vacancy_id }, null)</p>
                 @: |
                 <p class="serviceBtn annCrud">
                     @Html.ActionLink("Delete", "Delete", "HOSPITAL_VACANCY", new { id = item.vacancy_id }, null)

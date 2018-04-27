@@ -4,7 +4,6 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_headFoot.cshtml";
 }
-
 <div class="container">
     <ul class="breadcrumb">
         <li><a href="@Url.Action("Index", "Home")">Home</a></li>
@@ -17,65 +16,66 @@
             <li><a href="@Url.Action("AdminHome", "Home")">Administrator Home</a></li>
         }
     </ul>
-        <h2>See what our community is saying!</h2>
-   
+    <h2>See what our community is saying!</h2>
 
-        <div class="col-lg-6 col-lg-offset-3">
-            @foreach (var item in Model)
+
+    <div class="col-lg-6 col-lg-offset-3">
+        <p class="serviceBtn annCrud"> @Html.ActionLink("Add Feedback", "Create", "HOSPITAL_FEEDBACK", null, null)</p>
+        
+
+        @foreach (var item in Model)
     {
         <div id="@item.id_feedback">
             <div>
                 <p><strong>First Name:</strong></p><p>@item.f_name</p>
             </div>
             @if (User.IsInRole("Admin"))
-    {
-        <div>
-            <p><strong>Last Name:</strong></p><p>@item.l_name</p>
-        </div>
-        <div>
-            <p><strong>Contact Email:</strong></p><p>@item.contact_email</p>
-        </div>
-        <div>
-            <p><strong>Type of Feedback:</strong></p><p>@item.type_feedback</p>
-        </div>
-        <div>
-            <p><strong>Department:</strong></p><p>@item.depart_feedback</p>
-        </div>
-}
+        {
+            <div>
+                <p><strong>Last Name:</strong></p><p>@item.l_name</p>
+            </div>
+            <div>
+                <p><strong>Contact Email:</strong></p><p>@item.contact_email</p>
+            </div>
+            <div>
+                <p><strong>Type of Feedback:</strong></p><p>@item.type_feedback</p>
+            </div>
+            <div>
+                <p><strong>Department:</strong></p><p>@item.depart_feedback</p>
+            </div>
+    }
 
             <div>
                 <p><strong>Comment:</strong></p><p>@item.comment_feedback</p>
             </div>
+
             @if (User.IsInRole("Admin"))
-    {
-        <div>
-            <p><strong>Date of Feedback:</strong></p><p>@item.date_feedback</p>
-        </div>
-        <div>
-            <p><strong>Published (Value of 0 or 1):</strong></p><p>@item.is_publish</p>
-        </div>
-}
+        {
+            <div>
+                <p><strong>Date of Feedback:</strong></p><p>@item.date_feedback</p>
+            </div>
+            <div>
+                <p><strong>Published (Value of 0 or 1):</strong></p><p>@item.is_publish</p>
+            </div>
+    }
         </div>
 
         <div>
             @if (User.IsInRole("Admin"))
-    {
-        <p class="serviceBtn annCrud"> @Html.ActionLink("Edit", "Edit", "HOSPITAL_FEEDBACK", new { id = item.id_feedback }, null)</p>
-        @: |
-        <p class="serviceBtn annCrud">
-            @Html.ActionLink("Delete", "Delete", "HOSPITAL_FEEDBACK", new { id = item.id_feedback }, null)
-        </p>
+        {
+            <p class="serviceBtn annCrud"> @Html.ActionLink("Edit", "Edit", "HOSPITAL_FEEDBACK", new { id = item.id_feedback }, null)</p>
+            @: |
+            <p class="serviceBtn annCrud">
+                @Html.ActionLink("Delete", "Delete", "HOSPITAL_FEEDBACK", new { id = item.id_feedback }, null)
+            </p>
 
-}
+    }
 
         </div>
         <hr />
 }
-        </div>
+    </div>
 </div>
-
-
-
 
 
 
