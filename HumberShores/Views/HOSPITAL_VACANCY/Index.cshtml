@@ -1,0 +1,69 @@
+﻿@model IEnumerable<HumberShores.Models.HOSPITAL_VACANCY>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.job_title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apply_due_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.job_type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.no_of_vacancy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contact_email)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.job_title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apply_due_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.job_type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.no_of_vacancy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contact_email)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.vacancy_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.vacancy_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.vacancy_id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -37,7 +37,7 @@ namespace HumberShores.Models
 
             [Display(Name = "Department Id")]
             [Required(ErrorMessage = "Departement id required")]
-            public int department_id { get; set; }
+            public int description_id { get; set; }
 
             [Display(Name = "Job Type")]
             [Required(ErrorMessage = "Job type required")]

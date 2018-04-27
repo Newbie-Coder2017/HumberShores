@@ -169,6 +169,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HOSPITAL_FEEDBACKController.cs" />
+    <Compile Include="Controllers\HOSPITAL_VACANCYController.cs" />
     <Compile Include="Controllers\site_usersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -404,6 +405,11 @@
     <Content Include="Views\HOSPITAL_FEEDBACK\Details.cshtml" />
     <Content Include="Views\HOSPITAL_FEEDBACK\Edit.cshtml" />
     <Content Include="Views\HOSPITAL_FEEDBACK\Index.cshtml" />
+    <Content Include="Views\HOSPITAL_VACANCY\Create.cshtml" />
+    <Content Include="Views\HOSPITAL_VACANCY\Delete.cshtml" />
+    <Content Include="Views\HOSPITAL_VACANCY\Details.cshtml" />
+    <Content Include="Views\HOSPITAL_VACANCY\Edit.cshtml" />
+    <Content Include="Views\HOSPITAL_VACANCY\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
