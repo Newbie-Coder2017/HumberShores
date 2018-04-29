@@ -6,7 +6,7 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
+using System.ComponentModel.DataAnnotations;
 namespace HumberShores.Models
 {
     using System;
@@ -18,7 +18,10 @@ namespace HumberShores.Models
         public int patient_id { get; set; }
         public int emp_id { get; set; }
         public System.DateTime app_date { get; set; }
+
+        [ConcurrencyCheck]
         public System.TimeSpan app_time { get; set; }
+
         public string app_reason { get; set; }
         public string app_comment { get; set; }
         public bool app_child { get; set; }

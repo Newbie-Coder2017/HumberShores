@@ -254,6 +254,7 @@
     <Compile Include="Models\specialty.cs">
       <DependentUpon>HumberShores.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Validation.cs" />
     <Compile Include="Models\VEHICLE.cs">
       <DependentUpon>HumberShores.tt</DependentUpon>
     </Compile>

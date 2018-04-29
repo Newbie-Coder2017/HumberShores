@@ -11,14 +11,22 @@
         $("#myCarousel").carousel("next");
     });
 
-    $('#childFields').hide();
+    $("#childFields").show();
 
-    if (('#childSelector').checked) {
-        $('#childFields').show();
+    if (!$("#childSelector").is(':checked')) {
+        $('#childFields').hide();
+    }
+
+    if (!$("#childSelectorEdit").is(':checked')) {
+        $("#childFieldsEdit").hide();
     }
 
     $('#childSelector').click(function () {
         $("#childFields").toggle(this.checked);
+    });
+
+    $('#childSelectorEidt').click(function () {
+        $("#childFieldsEdit").toggle(this.checked);
     });
 
     $(function () {
@@ -33,8 +41,8 @@
         $('#time').datetimepicker({
             format: 'HH:00',
             disabledHours: [0, 1, 2, 3, 4, 5, 6, 7, 8, 17, 18, 19, 20, 21, 22, 23],
-            useCurrent: false
-            //defaultDate: '12:00'
+            useCurrent: false,
+            
         });
     });
 
