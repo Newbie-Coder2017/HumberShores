@@ -2,6 +2,18 @@
     margin-bottom: 3em
 }
 
+#Layer_1 {
+    width: 100%;
+}
+
+#MainRoads > text {
+    font: 500 24px OpenSans, 'Open Sans';
+}
+
+#MainRoads:hover > text {
+    font:700 26px OpenSans, 'Open Sans';
+}
+
 #map:hover > *:not(#HumberShores) {
     opacity: 0.7;
 }

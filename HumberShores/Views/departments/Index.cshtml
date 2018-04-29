@@ -24,12 +24,10 @@
     </ul>
 
     <main class="featureContent">
-        <div id="temp"></div>
+        <div id="temp">@*Use one or multiple hidden divs and then reveal them on mouseover to show the snippet details of the section or just Section Name*@</div>
         <div class="row">
-            <div class="col-md-6">
-                @Html.Partial("_map")
-            </div>
-            <div class="col-md-6">
+
+            <div class="col-md-6 col-md-push-6">
                 <div>
                     <h2>Hospital Map:</h2>
                     <p>Click on the hospital sections to display information on that area of the hospital and departments within.</p>
@@ -47,12 +45,15 @@
                         @Html.DropDownList("departments", new SelectList(Model, "dept_id", "dept_name"), "Select a Department", new { @class = "form-control" })
                     }
                 </div>
-                <div id="information"></div>
+                
                 <p><a href="https://goo.gl/maps/fVTXDL6oRnA2" class="btn btn-default" target="_blank">Get directions to Hospital</a>
                 <a href="tel:4165556262" class="btn btn-default" target="_blank">Call the Hospital</a></p>
             </div>
-
-
+            <div class="col-md-6 col-md-pull-6">
+                @Html.Partial("_map")
+            </div>
+            <div class="col-md-6">&nbsp;</div>
+                <div id="information" class="col-md-6"></div>
         </div>
 
         @if (User.IsInRole("User"))
@@ -67,9 +68,9 @@
             <h2>Administrative View:</h2>
             <p>Access all department information. Click below to <strong>Add</strong> new department, <strong>Edit</strong> to change details or <strong>Delete</strong> to remove selected department</p>
             <div class="col-12">
-                <a href="@Url.Action("Create", "departments")" class="btn btn-default btnService">Add New Department</a>
+                @*<a href="@Url.Action("Create", "departments")" class="btn btn-default btnService">Add New Department</a>*@
 
-                @*@Html.ActionLink("Add New Department", "Create")*@
+                @Html.ActionLink("Add New Department", "Create", null, new { @class = "btn btn-default btnService" })
 
 
             </div>
@@ -110,7 +111,7 @@
                         </td>
                         <td class="col-md-2">
                             @Html.ActionLink("Edit", "Edit", new { id = item.dept_id }, new { @class = "btn btn-default btn-sm" }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.dept_id }, new { @class = "btn btn-default btn-sm" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.dept_id }, new { @class = "btn btn-default btn-sm btn-delete" })
                         </td>
                     </tr>}
             </table>
@@ -122,7 +123,5 @@
     </main>
 </div>
     @section Scripts {
-        @*@Scripts.Render("~/bundles/jqueryunobtrusive")*@
         <script src="~/Scripts/department.js"></script>
-
     }

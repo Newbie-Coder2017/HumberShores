@@ -5,6 +5,28 @@
     margin-bottom: 1em;
 }
 
+.details {
+    padding-left: 2em;
+}
+
+.extension {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+h5 {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+h6 {
+    font-size: 0.85em;
+}
+
+.btnService {
+    margin: 0.5em;
+}
+
 .btn-default, .btn-default:visited {
     background-color: #fff;
     color: #3972B2;
@@ -28,6 +50,22 @@
 .btn-confirm:hover {
     background-color: #EFA463;
     color: #FFF;
+}
+
+.btn-delete:hover {
+    background-color: darkred;
+    color: #FFF;
+    border-color: darkred;
+}
+
+.btn-delete {
+    background-color: #FFF;
+    color: darkred;
+    border-color: darkred;
+}
+
+.table-hover > tbody > tr:hover > td {
+    background-color: #EFA46360;
 }
 
 .required {

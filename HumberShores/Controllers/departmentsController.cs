@@ -162,9 +162,17 @@ namespace HumberShores.Controllers
 		public PartialViewResult SectionDepartments(FormCollection form)
 		{
 			int section_id;
-			bool result = Int32.TryParse(form["section"], out section_id);
+			bool result = Int32.TryParse(form["section"], out section_id);//Handle true and false of this result
+			
+			//SECTION_ID IS TRUE - LOOK FOR DEPARTMENTS WITH A MATCHING SECTION VALUE
 			var deptsInSection = db.departments.Where(d => d.section == section_id);
 			List<department> depts = new List<department>();
+
+			//IF THE SECTION HAS NO CONTAINED DEPARTMENTS (LIKE ENTRANCE/PARKING LOT) - REDIRECT TO SHOW SECTION DESCRIPTION
+			if (!deptsInSection.Any())
+			{
+				return PartialView("~/Views/departments/_SectionDescription.cshtml", db.property_sections.SingleOrDefault(s => s.id == section_id));
+			}
 
 			foreach (var item in deptsInSection)
 			{

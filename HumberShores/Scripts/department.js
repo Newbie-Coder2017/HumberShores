@@ -10,7 +10,7 @@ function pageReady() {
         $("#changeDept").submit();
     });
 
-    $("#HumberShores > g > polygon, #HumberShores > g > rect, #ParkingLot").on("click", function (event) { displaySection(event) });
+    $("#HumberShores > g > polygon, #HumberShores > g > rect, #ParkingLot").on("click", function (event) { displaySection(event); });
     
 
     ////Mouseover
@@ -79,26 +79,24 @@ function displaySection(obj) {
     console.log(parentId);
 
     //List of Property Sections on Map
-    var sections = ["Entrance", "ParkingLot", "Registration", "Radiology", "Emergency", "HeliPad", "RecievingStorage", "Oncology", "DayPatients", "LongTermPatients"];
+    var sections = ["Entrance", "ParkingLot", "Administration", "RadiologyResearch", "Emergency", "HeliPad", "ShippingRecieving", "Surgery", "InPatients", "LongTermCare"];
     var section_id = sections.indexOf(parentId) + 1;
+    //Use the order of the sections Array to provide the ID number for the search in the DB
 
-    //if parentID == "ParkingLot", "Entrance", "Helipad"
-    //Create Div with ID temp
-    //Return Section Definition
-    container.html("<h3>"+parentId+"</h3>");
+    //Return Section Definition and Any departments within that section
 
-    //$.ajax({
-    //    url: "/departments/SectionDepartments",
-    //    method: "POST",
-    //    async: true,
-    //    //processData: false,
-    //    data: { "section" : section_id },
-    //    success: function (response) {
-    //        container.html(response);
-    //        console.log("success");
-    //        return false;
-    //    }
-    //});
+    //Call DB for section 
+    $.ajax({
+        url: "/departments/SectionDepartments",
+        method: "POST",
+        async: true,
+        data: { "section" : section_id },
+        success: function (response) {
+            container.html(response);
+            console.log("success");
+            return false;
+        }
+    });
 
 
 }
