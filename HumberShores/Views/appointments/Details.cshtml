@@ -29,8 +29,8 @@
             <p>@Html.DisplayFor(model => model.site_users.user_first_name) @Html.DisplayFor(model => model.site_users.user_last_name)</p>
         </div>
         <div>
-            <h3>@Html.DisplayNameFor(model => model.employee.emp_id)</h3>
-            <p>@Html.DisplayFor(model => model.employee.emp_id)</p>
+            <h3>Doctor</h3>
+            <p>@Html.DisplayFor(model => model.employee.site_users1.user_first_name) @Html.DisplayFor(model => model.employee.site_users1.user_last_name)</p>
         </div>
         <div>
             <h3>@Html.DisplayNameFor(model => model.app_date)</h3>
@@ -48,30 +48,32 @@
             <h3>@Html.DisplayNameFor(model => model.app_comment)</h3>
             <p>@Html.DisplayFor(model => model.app_comment)</p>
         </div>
-        <div>
-            <h3>@Html.DisplayNameFor(model => model.app_child)</h3>
-            <p>@Html.DisplayFor(model => model.app_child)</p>
+        <div id="childFields">
+            <div>
+                <h3>@Html.DisplayNameFor(model => model.app_child)</h3>
+                <p>@Html.DisplayFor(model => model.app_child)</p>
+            </div>
+            <div>
+                <h3>@Html.DisplayNameFor(model => model.app_child_first)</h3>
+                <p>@Html.DisplayFor(model => model.app_child_first)</p>
+            </div>
+            <div>
+                <h3>@Html.DisplayNameFor(model => model.app_child_last)</h3>
+                <p>@Html.DisplayFor(model => model.app_child_last)</p>
+            </div>
+            <div>
+                <h3>@Html.DisplayNameFor(model => model.app_child_dob)</h3>
+                <p>@Html.DisplayFor(model => model.app_child_dob)</p>
+            </div>
+            <div>
+                <h3>@Html.DisplayNameFor(model => model.app_child_gender)</h3>
+                <p>@Html.DisplayFor(model => model.app_child_gender)</p>
+            </div>
         </div>
-        <div>
-            <h3>@Html.DisplayNameFor(model => model.app_child_first)</h3>
-            <p>@Html.DisplayFor(model => model.app_child_first)</p>
-        </div>
-        <div>
-            <h3>@Html.DisplayNameFor(model => model.app_child_last)</h3>
-            <p>@Html.DisplayFor(model => model.app_child_last)</p>
-        </div>
-        <div>
-            <h3>@Html.DisplayNameFor(model => model.app_child_dob)</h3>
-            <p>@Html.DisplayFor(model => model.app_child_dob)</p>
-        </div>
-        <div>
-            <h3>@Html.DisplayNameFor(model => model.app_child_gender)</h3>
-            <p>@Html.DisplayFor(model => model.app_child_gender)</p>
-        </div>       
         <div>
             <p class="serviceBtn annCrud">@Html.ActionLink("Update Appointment", "Edit", new { id = Model.app_id }, new { @class = "btn btn-default" })</p>
             <p class="serviceBtn annCrud">@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })</p>
         </div>
         <hr />
-    </main>
+</main>
 </div>

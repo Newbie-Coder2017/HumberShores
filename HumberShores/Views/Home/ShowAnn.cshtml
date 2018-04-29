@@ -1,15 +1,41 @@
 ﻿@model IEnumerable<HumberShores.Models.announcement>
+@using System.Linq
 
-@foreach (var item in Model)
+@if (!Model.Any())
 {
-    <div class="annContainer item">
-        <div class="annText">
-            <p class="annTextDb">@Html.DisplayFor(modelItem => item.ann_text)</p>
-        </div>
-        <div class="annDate">
-            <p id="annDateP">@Html.DisplayFor(modelItem => item.ann_severity) at</p>
-            <p class="annDateDb">@Html.DisplayFor(modelItem => item.ann_date)</p>
+
+}
+else
+{
+    <div class="container-fluid">
+        <div class="container" id="annBarBG">
+            <div class="row">
+                <div id="myCarousel" class="carousel slide">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="annContainer item active">
+                            <div class="annText">
+                                <span class="annTextDb">This is the Humber Shores Announcement Bar, if you see this bar ensure that you read the ticker as the information may be vital to your Hospital Visit.</span>
+                            </div>
+                        </div>
+                        @foreach (var item in Model)
+                        {
+                            <div class="annContainer item">
+                                <div class="annText">
+                                    <p class="annTextDb">@Html.DisplayFor(modelItem => item.ann_text)</p>
+                                </div>
+                                <div class="annDate">
+                                    <p id="annDateP">@Html.DisplayFor(modelItem => item.ann_severity) at</p>
+                                    <p class="annDateDb">@Html.DisplayFor(modelItem => item.ann_date)</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <a href="#" class="left carousel-control arrow" role="button"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span><span class="sr-only">Previous</span></a>
+                    <a href="#" class="right carousel-control arrow" role="button"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span><span class="sr-only">Next</span></a>
+                </div>
+            </div>
         </div>
     </div>
 }
+
 

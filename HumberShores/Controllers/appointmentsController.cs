@@ -22,6 +22,25 @@ namespace HumberShores.Controllers
             return View(appointments.ToList());
         }
 
+        private List<SelectListItem> GetEmployeeNamesEmpIds()
+        {
+            List<SelectListItem> EmployeeNamesEmpIds = new List<SelectListItem>();
+            var result = from e in db.employees
+                         join u in db.site_users
+                         on e.user_id equals u.user_id
+                         select new
+                         {
+                             fname = u.user_first_name,
+                             lname = u.user_last_name,
+                             empid = e.emp_id
+                         };
+            foreach (var r in result)
+            {
+                EmployeeNamesEmpIds.Add(new SelectListItem() { Value = r.empid.ToString(), Text = r.fname + " " + r.lname });
+            }
+            return EmployeeNamesEmpIds;
+        }
+
         // GET: appointments/Details/5
         public ActionResult Details(int? id)
         {
@@ -40,6 +59,7 @@ namespace HumberShores.Controllers
         // GET: appointments/Create
         public ActionResult Create()
         {
+            ViewBag.emp_name = GetEmployeeNamesEmpIds();
             ViewBag.emp_id = new SelectList(db.employees, "emp_id", "emp_id");
             return View();
         }
@@ -59,7 +79,7 @@ namespace HumberShores.Controllers
                 return RedirectToAction("Index");
             }
 
-            
+            ViewBag.emp_name = GetEmployeeNamesEmpIds();
             ViewBag.emp_id = new SelectList(db.site_users, "emp_id", "emp_id", appointment.emp_id);
             return View(appointment);
         }
@@ -76,6 +96,7 @@ namespace HumberShores.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.emp_name = GetEmployeeNamesEmpIds();
             ViewBag.emp_id = new SelectList(db.employees, "emp_id", "emp_id", appointment.emp_id);
             return View(appointment);
         }
@@ -94,6 +115,7 @@ namespace HumberShores.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.emp_name = GetEmployeeNamesEmpIds();
             ViewBag.emp_id = new SelectList(db.employees, "emp_id", "emp_id", appointment.emp_id);
             return View(appointment);
         }

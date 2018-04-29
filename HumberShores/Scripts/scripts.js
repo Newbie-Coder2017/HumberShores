@@ -12,6 +12,7 @@
     });
 
     $('#childFields').hide();
+
     if (('#childSelector').checked) {
         $('#childFields').show();
     }
