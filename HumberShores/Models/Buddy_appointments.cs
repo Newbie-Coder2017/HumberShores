@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 
 namespace HumberShores.Models
 {
@@ -17,6 +18,8 @@ namespace HumberShores.Models
 
             [Display(Name = "Day of Appointment")]
             [Required(ErrorMessage = "Appointment Day must be selected")]
+            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+            //[FutureDate]
             public System.DateTime app_date { get; set; }
 
             [Display(Name = "Time of Appointment")]
