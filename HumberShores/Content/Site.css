@@ -223,6 +223,16 @@ label {
     top: 30%;
 }
 
+/*Appointment Styling*/
+.apps {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    border-bottom: 1px solid grey;
+}
+.apps span {
+    margin: 10px;
+}
 
 /*Index Styling*/
 #indexHeader {
