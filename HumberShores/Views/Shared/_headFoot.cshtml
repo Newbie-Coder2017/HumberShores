@@ -73,7 +73,7 @@
                     <li class="footListHeader">About</li>
                     <li>Humber Shores</li>
                     <li>Mission Statement</li>
-                    <li>Hospital Foundation</li>
+                    <li><a href="@Url.Action("Index", "hospital_feedback")">Hospital Feedback</a></li>
                     <li>@Html.ActionLink("Map & Directions", "Index", "departments")</li>
                 </ul>
                 <ul class="footList">
@@ -81,6 +81,7 @@
                     <li>Contact Us</li>
                     <li>@Html.ActionLink("Doctor directory", "Index", "physicians")</li>
                     <li>Volunteers</li>
+                    <li><a href="@Url.Action("Index", "hospital_vacancy")">Job Boards</a></li>
                 </ul>
                 <ul class="footList listHide">
                     <li class="footListHeader">Extra</li>
