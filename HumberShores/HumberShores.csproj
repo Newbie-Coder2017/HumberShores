@@ -170,6 +170,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HOSPITAL_FEEDBACKController.cs" />
     <Compile Include="Controllers\HOSPITAL_VACANCYController.cs" />
+    <Compile Include="Controllers\physiciansController.cs" />
     <Compile Include="Controllers\site_usersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -267,6 +268,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\department.css" />
+    <Content Include="Content\directory.css" />
     <Content Include="Content\map.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -331,6 +333,7 @@
     <None Include="Properties\PublishProfiles\humberShores - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\humberShores - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\directory.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -411,6 +414,12 @@
     <Content Include="Views\HOSPITAL_VACANCY\Details.cshtml" />
     <Content Include="Views\HOSPITAL_VACANCY\Edit.cshtml" />
     <Content Include="Views\HOSPITAL_VACANCY\Index.cshtml" />
+    <Content Include="Views\physicians\Create.cshtml" />
+    <Content Include="Views\physicians\Delete.cshtml" />
+    <Content Include="Views\physicians\Details.cshtml" />
+    <Content Include="Views\physicians\Edit.cshtml" />
+    <Content Include="Views\physicians\Index.cshtml" />
+    <Content Include="Views\physicians\_ListPhysicians.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

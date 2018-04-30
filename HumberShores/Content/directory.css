@@ -1,2 +1,61 @@
-﻿body {
+﻿#directory, form {
+    padding: 0 4em;
+}
+
+h3 {
+    font-size: 1.05em;
+}
+
+h5 {
+    display: inline-block;
+    margin: 0;
+    /*font-size: 1.25rem;*/
+    font-weight: bold;
+}
+
+    h5::after {
+        content: ": ";
+    }
+
+p {
+    display: inline-block;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+.required {
+    color: red;
+    font-weight: bold;
+}
+
+.required-star::after {
+    content: " *";
+    color: red;
+    font-weight: bold;
+}
+
+.form-control-static, h4 {
+    display: inline-block;
+    font-weight: 300;
+}
+
+.list-item {
+    margin: 2em 0;
+    /*border-bottom: 1px solid grey;*/
+}
+
+    .list-item:first-child {
+        margin: unset;
+    }
+
+    .list-item:last-child {
+        border: none;
+    }
+
+.col-md-6 a {
+    font-weight: 300;
+    font-size: 1em;
+    text-decoration: none;
 }

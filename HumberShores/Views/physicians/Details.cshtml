@@ -1,0 +1,139 @@
+﻿@model HumberShores.Models.physician
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_headFoot.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>physician</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.website)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.website)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.street_address1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.street_address1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.street_address2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.street_address2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.building_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.building_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.city)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.city)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.postal_code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.postal_code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.department.dept_desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.department.dept_desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.employee.emp_position)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employee.emp_position)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.province1.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.province1.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.specialty.specialty_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.specialty.specialty_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.specialty1.specialty_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.specialty1.specialty_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.site_users.role_code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.site_users.role_code)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.doctor_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
