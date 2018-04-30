@@ -40,7 +40,7 @@
                 {
                     <div>
                         <h3>Patient<span class="required">*</span></h3>
-                        @Html.DropDownList("user_id", new SelectList(ViewBag.user_name, "Value", "Text"), "Select Patient", htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownList("patient_id", new SelectList(ViewBag.user_name, "Value", "Text"), "Select Patient", htmlAttributes: new { @class = "form-control" })
                         <p>@Html.ValidationMessageFor(model => model.patient_id, "", new { @class = "text-danger" })</p>
                     </div>
                 }
