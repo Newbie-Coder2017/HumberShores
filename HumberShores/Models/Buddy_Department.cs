@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HumberShores.Models
 {
@@ -21,6 +22,7 @@ namespace HumberShores.Models
 			[Display(Name = "Department Head")]
 			[RegularExpression("[^0][1-9]*[0-9]?", ErrorMessage = "Must Select an employee as Department Head#")]
 			[Required(ErrorMessage = "Must Select an employee as Department Head")]
+			//[ForeignKey("emp_id")]
 			public int dept_head { get; set; }
 
 			[Display(Name = "Description")]
