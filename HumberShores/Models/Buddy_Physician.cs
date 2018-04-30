@@ -15,6 +15,9 @@ namespace HumberShores.Models
 			[Display(Name = "Physician ID#")]
 			public int doctor_id { get; set; }
 
+			[Display(Name = "Employee Name")]
+			public int emp_id { get; set; }
+
 			[Display(Name = "Department")]
 			[Required(ErrorMessage = "Department must be identified")]
 			public Nullable<int> department_id { get; set; }
