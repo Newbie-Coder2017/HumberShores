@@ -110,8 +110,10 @@
                                 @Html.DisplayFor(modelItem => item.employee.site_users1.full_name) 
                         </td>
                         <td class="col-md-2">
-                            @Html.ActionLink("Edit", "Edit", new { id = item.dept_id }, new { @class = "btn btn-default btn-sm" }) |
+                            @Html.ActionLink("Edit", "Edit", new { id = item.dept_id }, new { @class = "btn btn-default btn-sm" }) 
+                            @if (User.IsInRole("Super Admin")) {
                             @Html.ActionLink("Delete", "Delete", new { id = item.dept_id }, new { @class = "btn btn-default btn-sm btn-delete" })
+                            }
                         </td>
                     </tr>}
             </table>

@@ -157,7 +157,7 @@ namespace HumberShores.Controllers
         }
 
 		// GET: departments/Delete/5
-		[Authorize(Roles = "Admin, Super Admin")]
+		[Authorize(Roles = "Super Admin")]
 		public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -175,7 +175,7 @@ namespace HumberShores.Controllers
         // POST: departments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-		[Authorize(Roles = "Admin, Super Admin")]
+		[Authorize(Roles = "Super Admin")]
 		public ActionResult DeleteConfirmed(int id)
         {
 			try
