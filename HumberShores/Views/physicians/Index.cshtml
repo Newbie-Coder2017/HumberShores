@@ -1,0 +1,67 @@
+﻿@model IEnumerable<HumberShores.Models.physician>
+
+@{
+    ViewBag.Title = "Doctor Directory";
+    Layout = "~/Views/Shared/_headFoot.cshtml";
+}
+@section Styles {
+    <link href="~/Content/directory.css" rel="stylesheet" type="text/css" />
+}
+
+
+
+<div class="container">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+        @if (User.IsInRole("User"))
+        {
+            <li><a href="@Url.Action("UserHome", "Home")">User Home</a></li>
+        }
+        else if (User.IsInRole("Admin") || User.IsInRole("Super Admin"))
+        {
+            <li><a href="@Url.Action("AdminHome", "Home")">Administrator Home</a></li>
+        }
+        <li class="active">Physician Directory</li>
+    </ul>
+
+    <main class="featureContent">
+        @if (User.IsInRole("User"))
+        {
+            @Html.Partial("UserDash")
+        }
+        else if (User.IsInRole("Admin") || User.IsInRole("Super Admin"))
+        {
+            @Html.Partial("AdminDash")
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+        }
+
+        <h2>Physician Directory</h2>
+
+
+        <section id="filters">
+            @using (Ajax.BeginForm("ListPhysicians", "physicians",
+              new AjaxOptions
+              {
+                  HttpMethod = "POST",
+                  UpdateTargetId = "directory",
+                  InsertionMode = InsertionMode.Replace
+              },
+              new { id = "filter_department", autocomplete = "off", name = "filter1" }))
+            {
+                @*Add filter for user to show doctors in a particular department*@
+                @*TO DO: only show the departments with active doctor or department head*@
+                @Html.Label("filter_department", "Filter by Department", new { @class = ""})
+                @Html.DropDownList("depts", ViewBag.depts as SelectList, "Show all Departments", new { id = "depts", @class = "form-control"})
+
+            }
+        </section>
+        <section id="directory">
+            @Html.Partial("_ListPhysicians", Model)
+        </section>
+    </main>
+</div>
+        @section Scripts {
+            <script src="~/Scripts/directory.js"></script>
+        }

@@ -1,0 +1,180 @@
+﻿@model HumberShores.Models.physician
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_headFoot.cshtml";
+}
+
+
+<div class="container">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+        @if (User.IsInRole("User"))
+        {
+            <li><a href="@Url.Action("UserHome", "Home")">User Home</a></li>
+        }
+        else if (User.IsInRole("Admin") || User.IsInRole("Super Admin"))
+        {
+            <li><a href="@Url.Action("AdminHome", "Home")">Administrator Home</a></li>
+        }
+        <li><a href="@Url.Action("Index", "departments")">Doctor Directory</a></li>
+        <li class="active">Add New Physician</li>
+    </ul>
+
+    <main class="featureContent">
+        @if (User.IsInRole("User"))
+        {
+            @Html.Partial("UserDash")
+        }
+        else if (User.IsInRole("Admin") || User.IsInRole("Super Admin"))
+        {
+            @Html.Partial("AdminDash")
+
+            <div class="col-sm-9">
+                <div class="annHomeHead">
+                    <h2>Add New Physician</h2>
+                </div>
+                <hr />
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <h4>physician</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.emp_id, "emp_id", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("emp_id", new SelectList(ViewBag.emp_id, "Value", "Text" ), htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.emp_id, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.department_id, htmlAttributes: new { @class = "control-label col-md-2 required-star" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("department_id", new SelectList(ViewBag.department_id, "dept_id", "dept_name"), "Select Department", htmlAttributes: new { @class = "form-control" })
+
+                                @Html.ValidationMessageFor(model => model.department_id, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.special1, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("special1", null, "Select Specialty", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.special1, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.special2, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("special2", null, "Select Specialty", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.special2, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.phone, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+                                <small>if empty, will display as "unspecified"</small>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.fax, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.fax, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.fax, "", new { @class = "text-danger" })
+                                <small>if empty, will display as "unspecified"</small>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.website, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.website, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.website, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.street_address1, htmlAttributes: new { @class = "control-label col-md-2 required-star" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.street_address1, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.street_address1, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.street_address2, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.street_address2, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.street_address2, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.building_name, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.building_name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.building_name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.city, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.city, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.city, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.province, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.province, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.province, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.postal_code, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.postal_code, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.postal_code, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group confirmation">
+                            <div class="col-md-offset-4 col-md-8">
+                                <input type="submit" value="Create" class="btn btn-confirm" />
+                                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+                            </div>
+                        </div>
+
+                    </div>
+                }
+            </div>
+        }
+    </main>
+</div>
+                @section Scripts {
+                    @Scripts.Render("~/bundles/jqueryval")
+                }

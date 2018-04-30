@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Error";
+}
+
+<main class="container">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+        <li class="active">Error</li>
+    </ul>
+    <div class="annHomeHead">
+        <h2>Error</h2>
+    </div>
+    <hr />
+    <div class="col-sm-8 featureContent errorContainer">
+        <h3>We have encountered an error with your recent action.</h3>
+        <p>@ViewBag.ExceptionMsg</p>
+    </div>
+</main>
+<div class="jumbotron" id="imgContainer">
+    <img src="~/imgs/saddoc.jpg" alt="A sad doctor" />
+</div>

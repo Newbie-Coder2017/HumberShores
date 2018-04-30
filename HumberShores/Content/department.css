@@ -52,13 +52,13 @@ h6 {
     color: #FFF;
 }
 
-.btn-delete:hover {
+.btn-delete:hover, .btn-delete:visited:hover {
     background-color: darkred;
     color: #FFF;
     border-color: darkred;
 }
 
-.btn-delete {
+.btn-delete, .btn-delete:visited {
     background-color: #FFF;
     color: darkred;
     border-color: darkred;

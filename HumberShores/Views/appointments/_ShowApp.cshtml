@@ -1,0 +1,14 @@
+﻿@model IEnumerable<HumberShores.Models.appointment>
+
+<div class="col-sm-7 col-sm-offset-3 featureContent">
+    <h3>Unavailable Appointments</h3>
+    <p>The appointments for the doctor listed below are currently occupied.</p>
+    @foreach (var item in Model)
+    {
+        <div class="apps">
+            <span>@Html.DisplayFor(modelItem => item.employee.site_users1.user_first_name) @Html.DisplayFor(modelItem => item.employee.site_users1.user_last_name)</span>
+            <span>@Html.DisplayFor(modelItem => item.app_time)</span>
+            <span>@Html.DisplayFor(modelItem => item.app_date)</span>
+        </div>
+    }
+</div>

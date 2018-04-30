@@ -15,6 +15,9 @@ namespace HumberShores.Models
 			[Display(Name = "Physician ID#")]
 			public int doctor_id { get; set; }
 
+			[Display(Name = "Employee Name")]
+			public int emp_id { get; set; }
+
 			[Display(Name = "Department")]
 			[Required(ErrorMessage = "Department must be identified")]
 			public Nullable<int> department_id { get; set; }
@@ -24,8 +27,7 @@ namespace HumberShores.Models
 
 			[Display(Name = "Specialty #2")]
 			public Nullable<int> special2 { get; set; }
-
-			//Optional messages when not required but will supply default
+			
 			[Display(Name = "Phone Number")]
 			[MinLength(10, ErrorMessage = "Must provide phone number with area code")]
 			[DataType(DataType.PhoneNumber, ErrorMessage = "Must provide a valid phone number")]
@@ -66,7 +68,7 @@ namespace HumberShores.Models
 			[Display(Name = "Postal Code")]
 			[MaxLength(7, ErrorMessage = "Must not be longer than 7 characters")]
 			[MinLength(6, ErrorMessage = "Must not be less than 6 characters")]
-			[RegularExpression("^[a-z][0-9][a-z] ?[0-9][a-z][0-9]$", ErrorMessage = "Must be a valid Canadian Postal Code X3X 3X3")]
+			[RegularExpression("^[A-Za-z][0-9][A-Za-z] ?[0-9][A-Za-z][0-9]$", ErrorMessage = "Must be a valid Canadian Postal Code X3X 3X3")]
 			[DataType(DataType.PostalCode, ErrorMessage = "Must enter valid Postal Code")]
 			public string postal_code
 			{

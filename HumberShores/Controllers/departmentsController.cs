@@ -7,6 +7,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HumberShores.Models;
+using System.Data.SqlClient;
+using System.Data.Entity.Validation;
+using System.Data.Entity.Infrastructure;
 
 namespace HumberShores.Controllers
 {
@@ -56,14 +59,52 @@ namespace HumberShores.Controllers
 		[Authorize(Roles = "Admin, Super Admin")]
 		public ActionResult Create([Bind(Include = "dept_id,dept_head,dept_desc,dept_name,dept_phone,section")] department department)
         {
-            if (ModelState.IsValid)
-            {
-                db.departments.Add(department);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+			try
+			{
+				if (ModelState.IsValid)
+				{
+					db.departments.Add(department);
+					db.SaveChanges();
+					return RedirectToAction("Index");
+				}
+			}
+			catch (DbEntityValidationException dbValEx)
+			{
+				foreach (var error in dbValEx.EntityValidationErrors)
+				{
+					ViewBag.ExceptionMsg += error.Entry.Entity;
+					foreach (var valErr in error.ValidationErrors)
+					{
+						ViewBag.ExceptionMsg += "<br/>" + valErr.PropertyName;
+						ViewBag.ExceptionMsg += "<br/>" + valErr.ErrorMessage;
+					}
+				}
+				return View("~/Views/Error/Error.cshtml");
+			}
+			catch (DbUpdateException dbException)
+			{
+				ViewBag.ExceptionMsg = dbException.Message;
+				ViewBag.ExceptionMsg += "<br/>" + dbException.InnerException.StackTrace;
+				ViewBag.ExceptionMsg += "<br/>" + dbException.InnerException.HelpLink;
 
-            ViewBag.dept_head = GetEmployeeNamesEmpIds();
+				ViewBag.ExceptionMsg += dbException.InnerException.Data;
+				return View("~/Views/Error/Error.cshtml");
+			}
+			catch (SqlException sqlEx)
+			{
+				ViewBag.ExceptionMsg = sqlEx.Message;
+				return View("~/Views/Error/Error.cshtml");
+			}
+
+			catch (Exception genericErr)
+			{
+				ViewBag.ExceptionMsg = genericErr.Message;
+				ViewBag.ExceptionMsg += "<br/>" + genericErr.InnerException;
+				return View("~/Views/Error/Error.cshtml");
+			}
+
+
+			ViewBag.dept_head = GetEmployeeNamesEmpIds();
 			ViewBag.sections = db.property_sections;
 			return View(department);
         }
@@ -89,24 +130,34 @@ namespace HumberShores.Controllers
 		// POST: departments/Edit/5
 		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
 		// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-		[Authorize(Roles = "Admin, Super Admin")]
 		[HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "dept_id,dept_head,dept_desc,dept_name,dept_phone,section")] department department)
+		[Authorize(Roles = "Admin, Super Admin")]
+		public ActionResult Edit([Bind(Include = "dept_id,dept_head,dept_desc,dept_name,dept_phone,section")] department department)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(department).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.dept_head = new SelectList(db.employees, "emp_id", "emp_position", department.dept_head);
+			try
+			{			
+				if (ModelState.IsValid)
+				{
+					db.Entry(department).State = EntityState.Modified;
+					db.SaveChanges();
+					return RedirectToAction("Index");
+				}
+			}
+			catch (Exception genericErr)
+			{
+				ViewBag.ExceptionMsg = genericErr.Message;
+				ViewBag.ExceptionMsg += "<br/>" + genericErr.InnerException;
+				return View("~/Views/Error/Error.cshtml");
+			}
+
+			ViewBag.dept_head = new SelectList(db.employees, "emp_id", "emp_position", department.dept_head);
 			ViewBag.sections = db.property_sections;
 			return View(department);
         }
 
 		// GET: departments/Delete/5
-		[Authorize(Roles = "Admin, Super Admin")]
+		[Authorize(Roles = "Super Admin")]
 		public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -124,13 +175,21 @@ namespace HumberShores.Controllers
         // POST: departments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-		[Authorize(Roles = "Admin, Super Admin")]
+		[Authorize(Roles = "Super Admin")]
 		public ActionResult DeleteConfirmed(int id)
         {
-            department department = db.departments.Find(id);
-            db.departments.Remove(department);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+			try
+			{
+				department department = db.departments.Find(id);
+				db.departments.Remove(department);
+				db.SaveChanges();
+				return RedirectToAction("Index");
+			}
+			catch (Exception genericErr)
+			{
+				ViewBag.ExceptionMsg = genericErr.Message;
+			}
+			return View("~/Views/Error/Error.cshtml");
         }
 
         protected override void Dispose(bool disposing)

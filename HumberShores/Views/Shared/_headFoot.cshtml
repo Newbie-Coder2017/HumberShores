@@ -43,7 +43,7 @@
                         <ul class="nav nav-pills nav-justified">
                             <li role="presentation" class="serviceBtn active">@Html.ActionLink("myHumber", "Login", "Home")</li>
                             <li role="presentation" class="serviceBtn">@Html.ActionLink("Patients", "Index", "Home")</li>
-                            <li role="presentation" class="serviceBtn">@Html.ActionLink("Doctors", "Index", "Home")</li>
+                            <li role="presentation" class="serviceBtn">@Html.ActionLink("Doctors", "Index", "physicians")</li>
                             <li role="presentation" class="serviceBtn">@Html.ActionLink("Resources", "Index", "Home")</li>
                             <li role="presentation" class="serviceBtn">@Html.ActionLink("Careers", "Index", "Home")</li>
                             <li role="presentation" class="serviceBtn">@Html.ActionLink("About", "Index", "Home")</li>
@@ -73,14 +73,15 @@
                     <li class="footListHeader">About</li>
                     <li>Humber Shores</li>
                     <li>Mission Statement</li>
-                    <li>Hospital Foundation</li>
-                    <li><a href="@Url.Action("Index", "departments")">Map &amp; Directions</a></li>
+                    <li><a href="@Url.Action("Index", "hospital_feedback")">Hospital Feedback</a></li>
+                    <li>@Html.ActionLink("Map & Directions", "Index", "departments")</li>
                 </ul>
                 <ul class="footList">
                     <li class="footListHeader">Staff</li>
                     <li>Contact Us</li>
-                    <li>Staff Directory</li>
+                    <li>@Html.ActionLink("Doctor directory", "Index", "physicians")</li>
                     <li>Volunteers</li>
+                    <li><a href="@Url.Action("Index", "hospital_vacancy")">Job Boards</a></li>
                 </ul>
                 <ul class="footList listHide">
                     <li class="footListHeader">Extra</li>
@@ -93,7 +94,7 @@
                     <div id="hospitalMap"></div>
                 </div>
             </div>
-            <p id="copy">Humber Shores Hospital &copy; @DateTime.Now.Year</p>
+            <p id="copy">Humber Shores Hospital &copy; @DateTime.Now.Year &mdash; This is NOT a real hospital, this is a school project to build a website.</p>
         </div>
     </footer>
     

@@ -1,0 +1,110 @@
+﻿@model IEnumerable<HumberShores.Models.physician>
+
+
+<section id="directory">
+    @foreach (var doctor in Model)
+    {
+        <div class="list-item">
+            <h4>@doctor.employee.site_users1.user_last_name, @doctor.employee.site_users1.user_first_name</h4>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <span class="form-control-static">
+                    ( @Html.ActionLink("Edit", "Edit", "physicians", new { id = doctor.doctor_id }, null) or @Html.ActionLink("Remove", "Delete", "physicians", new { id = doctor.doctor_id }, null) )
+                </span>
+}
+            <div class="row lin">
+                <div class="col-md-12">
+                    <h5>@Html.DisplayNameFor(model => model.department_id)</h5> @doctor.department.dept_name
+                </div>
+                @if (doctor.specialty != null)
+                {
+                    <div class="col-md-6">
+                        <h5>@Html.DisplayNameFor(model => model.special1)</h5> @Html.DisplayFor(model => doctor.specialty.specialty_name)
+                    </div>
+                    <div class="col-md-6">
+                        <h5>@Html.DisplayNameFor(model => model.special2)</h5> @Html.DisplayFor(model => doctor.specialty1.specialty_name)
+                    </div>
+}
+                else
+                {
+                    <div class="col-md-6">
+                        <h5>@Html.DisplayNameFor(model => model.special1)</h5> N/A
+                    </div>
+                    <div class="col-md-6">
+                        <h5>@Html.DisplayNameFor(model => model.special2)</h5> N/A
+                    </div>
+}
+
+                @*If the phone number not provided, show department Main Extension*@
+                @if (!doctor.phone.IsEmpty())
+                {
+                    <div class="col-md-6">
+                        <h5>@Html.DisplayNameFor(model => model.phone)</h5> @Html.DisplayFor(model => doctor.phone)
+                    </div>
+}
+                else
+                {
+                    <div class="col-md-6">
+                        <h5>@Html.DisplayNameFor(model => model.phone)</h5> Extention @Html.DisplayFor(model => doctor.department.dept_phone) (@Html.DisplayFor(model => doctor.department.dept_name))
+                    </div>
+}
+
+                @*If the fax number not provided, display N/A*@
+                @if (!doctor.fax.IsEmpty())
+                {
+                    <div class="col-md-6">
+                        <h5>@Html.DisplayNameFor(model => model.fax)</h5> @Html.DisplayFor(model => doctor.fax)
+                    </div>
+}
+                else
+                {
+                    <div class="col-md-6">
+                        <h5>@Html.DisplayNameFor(model => model.fax)</h5> N/A
+                    </div>
+}
+
+                @*If the email not provided, indicate "unspecified*@
+                @if (!doctor.email.IsEmpty())
+                {
+                    <div class="col-md-6">
+                        <h5>@Html.DisplayNameFor(model => model.email)</h5> @Html.DisplayFor(model => doctor.email)
+                    </div>
+}
+                else
+                {
+                    <div class="col-md-6">
+                        <h5>@Html.DisplayNameFor(model => model.email)</h5> Unspecified
+                    </div>
+}
+
+                @*If the website not provided, indicate "unspecified*@
+                @if (!doctor.website.IsEmpty())
+                {
+                    <div class="col-md-6">
+                        <h5>@Html.DisplayNameFor(model => model.website)</h5> @Html.DisplayFor(model => doctor.website)
+                    </div>
+}
+                else
+                {
+                    <div class="col-md-6">
+                        <h5>@Html.DisplayNameFor(model => model.website)</h5> Unspecified
+                    </div>
+}
+
+                <div>
+                    <h5 class="col-md-2">Mailing Address</h5>
+                    <div class="col-md-10">
+                        @Html.DisplayFor(model => doctor.street_address1), @Html.DisplayFor(model => doctor.street_address2)<br />
+                        @if (!doctor.building_name.IsEmpty())
+                        {
+                            @Html.DisplayFor(model => doctor.building_name) <br />
+}
+                        @Html.DisplayFor(model => doctor.city), @Html.DisplayFor(model => doctor.province) <br />
+                        @Html.DisplayFor(model => doctor.postal_code)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr/>
+    }
+</section>
