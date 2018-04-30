@@ -63,6 +63,7 @@
 
                 <div>
                     <h3>@Html.LabelFor(model => model.app_time, htmlAttributes: new { @class = "control-label" })<span class="required">*</span></h3>
+                    <p>Time's are only available from 9:00 until 16:00.</p>
                     <div class="input-group date">
                         @Html.EditorFor(model => model.app_time, new { htmlAttributes = new { @id = "time", @class = "form-control" } })
                         <span class="input-group-addon">
@@ -131,6 +132,9 @@
             </div>
             <hr />
         </main>
+    }
+    @{
+        Html.RenderAction("_ShowApp", "appointments");
     }
 </div>
 

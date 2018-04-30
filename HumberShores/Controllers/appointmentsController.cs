@@ -24,6 +24,11 @@ namespace HumberShores.Controllers
             return View(appointments.ToList());
         }
 
+        public PartialViewResult _ShowApp()
+        {
+            var apps = db.appointments.Where(a => a.app_date > DateTime.Now).OrderBy(a => a.app_date).ToList();
+            return PartialView(apps);
+        }
         //[HttpPost]
         //public PartialViewResult ShowApp(int emp_id, DateTime app_date)
         //{
