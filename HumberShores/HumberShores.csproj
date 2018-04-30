@@ -170,13 +170,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HOSPITAL_FEEDBACKController.cs" />
     <Compile Include="Controllers\HOSPITAL_VACANCYController.cs" />
-<<<<<<< HEAD
     <Compile Include="Controllers\opportunitiesController.cs" />
     <Compile Include="Controllers\PassesController.cs" />
     <Compile Include="Controllers\PassTypeController.cs" />
-=======
     <Compile Include="Controllers\physiciansController.cs" />
->>>>>>> 09b3b3a3a3c7401c3c6efce7d0e451b791d746d7
     <Compile Include="Controllers\site_usersController.cs" />
     <Compile Include="Controllers\VehiclesController.cs" />
     <Compile Include="Controllers\VolunteersController.cs" />
@@ -427,7 +424,6 @@
     <Content Include="Views\HOSPITAL_VACANCY\Details.cshtml" />
     <Content Include="Views\HOSPITAL_VACANCY\Edit.cshtml" />
     <Content Include="Views\HOSPITAL_VACANCY\Index.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Volunteers\Create.cshtml" />
     <Content Include="Views\Volunteers\Delete.cshtml" />
     <Content Include="Views\Volunteers\Edit.cshtml" />
@@ -453,7 +449,6 @@
     <Content Include="Views\Vehicles\Edit.cshtml" />
     <Content Include="Views\Vehicles\Index.cshtml" />
     <Content Include="Views\Volunteers\Details.cshtml" />
-=======
     <Content Include="Views\physicians\Create.cshtml" />
     <Content Include="Views\physicians\Delete.cshtml" />
     <Content Include="Views\physicians\Details.cshtml" />
@@ -461,7 +456,6 @@
     <Content Include="Views\physicians\Index.cshtml" />
     <Content Include="Views\physicians\_ListPhysicians.cshtml" />
     <Content Include="Views\Error\Error.cshtml" />
->>>>>>> 09b3b3a3a3c7401c3c6efce7d0e451b791d746d7
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
