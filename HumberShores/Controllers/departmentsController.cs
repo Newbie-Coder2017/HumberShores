@@ -88,19 +88,19 @@ namespace HumberShores.Controllers
 				ViewBag.ExceptionMsg += "<br/>" + dbException.InnerException.HelpLink;
 
 				ViewBag.ExceptionMsg += dbException.InnerException.Data;
-				return View("~/Views/Errors/Error.cshtml");
+				return View("~/Views/Error/Error.cshtml");
 			}
 			catch (SqlException sqlEx)
 			{
 				ViewBag.ExceptionMsg = sqlEx.Message;
-				return View("~/Views/Errors/Error.cshtml");
+				return View("~/Views/Error/Error.cshtml");
 			}
 
 			catch (Exception genericErr)
 			{
 				ViewBag.ExceptionMsg = genericErr.Message;
 				ViewBag.ExceptionMsg += "<br/>" + genericErr.InnerException;
-				return View("~/Views/Errors/Error.cshtml");
+				return View("~/Views/Error/Error.cshtml");
 			}
 
 
@@ -135,13 +135,23 @@ namespace HumberShores.Controllers
 		[Authorize(Roles = "Admin, Super Admin")]
 		public ActionResult Edit([Bind(Include = "dept_id,dept_head,dept_desc,dept_name,dept_phone,section")] department department)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(department).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.dept_head = new SelectList(db.employees, "emp_id", "emp_position", department.dept_head);
+			try
+			{			
+				if (ModelState.IsValid)
+				{
+					db.Entry(department).State = EntityState.Modified;
+					db.SaveChanges();
+					return RedirectToAction("Index");
+				}
+			}
+			catch (Exception genericErr)
+			{
+				ViewBag.ExceptionMsg = genericErr.Message;
+				ViewBag.ExceptionMsg += "<br/>" + genericErr.InnerException;
+				return View("~/Views/Error/Error.cshtml");
+			}
+
+			ViewBag.dept_head = new SelectList(db.employees, "emp_id", "emp_position", department.dept_head);
 			ViewBag.sections = db.property_sections;
 			return View(department);
         }
@@ -168,10 +178,18 @@ namespace HumberShores.Controllers
 		[Authorize(Roles = "Admin, Super Admin")]
 		public ActionResult DeleteConfirmed(int id)
         {
-            department department = db.departments.Find(id);
-            db.departments.Remove(department);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+			try
+			{
+				department department = db.departments.Find(id);
+				db.departments.Remove(department);
+				db.SaveChanges();
+				return RedirectToAction("Index");
+			}
+			catch (Exception genericErr)
+			{
+				ViewBag.ExceptionMsg = genericErr.Message;
+			}
+			return View("~/Views/Error/Error.cshtml");
         }
 
         protected override void Dispose(bool disposing)
