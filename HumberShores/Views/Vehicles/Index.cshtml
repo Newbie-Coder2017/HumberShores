@@ -1,0 +1,55 @@
+﻿@model IEnumerable<HumberShores.Models.VEHICLE>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_headFoot.cshtml";
+}
+
+<div class="container">
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MAKE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MODEL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.YEAR)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.site_users.role_code)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MAKE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MODEL)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.YEAR)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.site_users.role_code)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.LICENSE_NUMBER }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.LICENSE_NUMBER }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.LICENSE_NUMBER })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

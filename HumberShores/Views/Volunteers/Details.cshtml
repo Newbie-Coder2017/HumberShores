@@ -1,0 +1,75 @@
+﻿@model HumberShores.Models.VOLUNTEER
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_headFoot.cshtml";
+}
+
+<div class="container">
+    <h2>Details</h2>
+
+
+    <h4>VOLUNTEER</h4>
+    <hr />
+    <div class="card">
+
+        <p>
+            Name : @Html.DisplayFor(model => model.FIRST_NAME) @Html.DisplayFor(model => model.MIDDLE_NAME) @Html.DisplayFor(model => model.LAST_NAME)
+        </p>
+
+        <p>
+            @Html.DisplayNameFor(model => model.OPPORTUNITY.OPPORTUNITY_TITLE) : @Html.DisplayFor(model => model.OPPORTUNITY.OPPORTUNITY_TITLE)
+        </p>
+
+        <p>
+            @Html.DisplayNameFor(model => model.OCCUPATION) : @Html.DisplayFor(model => model.OCCUPATION)
+        </p>
+
+        <p>
+            @Html.DisplayNameFor(model => model.PHONE_NUMBER) : @Html.DisplayFor(model => model.PHONE_NUMBER)
+        </p>
+
+        <p>
+            @Html.DisplayNameFor(model => model.STREET_ADDRESS) : @Html.DisplayFor(model => model.STREET_ADDRESS)
+        </p>
+
+        <p>
+            @Html.DisplayNameFor(model => model.CITY) :  @Html.DisplayFor(model => model.CITY)
+        </p>
+
+        <p>
+            @Html.DisplayNameFor(model => model.PROVINCE) :  @Html.DisplayFor(model => model.PROVINCE)
+        </p>
+
+        <p>
+            @Html.DisplayNameFor(model => model.POSTAL_CODE) : @Html.DisplayFor(model => model.POSTAL_CODE)
+        </p>
+
+        <p>
+            @Html.DisplayNameFor(model => model.EMAIL) :  @Html.DisplayFor(model => model.EMAIL)
+        </p>
+
+        <p>
+            @Html.DisplayNameFor(model => model.DATE_OF_BIRTH) :  @Html.DisplayFor(model => model.DATE_OF_BIRTH)
+        </p>
+
+        <p>
+            @Html.DisplayNameFor(model => model.GENDER) : @Html.DisplayFor(model => model.GENDER)
+        </p>
+
+        <p>
+            @Html.DisplayNameFor(model => model.LICENCE) : @Html.DisplayFor(model => model.LICENCE)
+        </p>
+
+        <p>
+            @Html.DisplayNameFor(model => model.START_DATE) : @Html.DisplayFor(model => model.START_DATE)
+        </p>
+
+    </div>
+
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.VOLUNTEER_ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
+</div>

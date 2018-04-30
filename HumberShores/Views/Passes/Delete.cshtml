@@ -1,0 +1,19 @@
+﻿@model HumberShores.Models.PASS
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="card" id="del_card">
+    <h3 class="text-center">Are you sure you want to delete  @Html.DisplayFor(model => model.PASS_ID)? </h3>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color text-center">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
+

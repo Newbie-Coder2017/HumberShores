@@ -1,0 +1,23 @@
+﻿@model HumberShores.Models.VOLUNTEER
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_headFoot.cshtml";
+}
+
+<div class="container">
+    <div class="card" id="del_card">
+        <h3  class="text-center">Are you sure you want to delete  @Html.DisplayFor(model => model.MIDDLE_NAME) @Html.DisplayNameFor(model => model.LAST_NAME) @Html.DisplayFor(model => model.LAST_NAME)</h3>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color text-center">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</div>
+
+

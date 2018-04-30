@@ -1,0 +1,38 @@
+﻿@model IEnumerable<HumberShores.Models.VOLUNTEER>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_headFoot.cshtml";
+}
+
+<div class="container">
+    <h2>Admin</h2>
+    <h4>Volunteers</h4>
+
+    <p class="text-right">
+        <a href="~/Views/opportunities/Index.cshtml"></a>
+    </p>
+    <p class="text-right">
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+    <ul class="list-group">
+        @foreach (var item in Model)
+        {
+            <li class="list-group-item" id="opp_list">
+                <div class="pull-right">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.VOLUNTEER_ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.VOLUNTEER_ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.VOLUNTEER_ID })
+                </div>
+                <div>
+                    <p>@Html.DisplayFor(modelItem => item.FIRST_NAME) @Html.DisplayFor(modelItem => item.MIDDLE_NAME) @Html.DisplayFor(modelItem => item.LAST_NAME)</p>
+                    <p>@Html.DisplayNameFor(model => model.OCCUPATION) : @Html.DisplayFor(modelItem => item.OCCUPATION)</p>
+                    <p>@Html.DisplayNameFor(model => model.OPPORTUNITY.OPPORTUNITY_TITLE) : @Html.DisplayFor(modelItem => item.OPPORTUNITY.OPPORTUNITY_TITLE) </p>
+                    <p>@Html.DisplayNameFor(model => model.START_DATE) : @Html.DisplayFor(modelItem => item.START_DATE)</p>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
+

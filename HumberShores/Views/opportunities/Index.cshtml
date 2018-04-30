@@ -1,0 +1,40 @@
+﻿@model IEnumerable<HumberShores.Models.OPPORTUNITY>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_headFoot.cshtml";
+}
+
+<div class="container">
+    <h2>Admin</h2>
+    <h4>Opportunities</h4>
+
+    <p class="text-right">
+        @Html.ActionLink("Add an Opportunity", "Create") | <a>Review Submissiion</a>
+    </p>
+
+    <ul class="list-group">
+        
+        @foreach (var item in Model)
+        {
+        <li class="list-group-item" id="opp_list">
+            <div class="pull-right">
+                @Html.ActionLink("Edit", "Edit", new { id = item.OPPORTUNITY_ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.OPPORTUNITY_ID })
+            </div>
+            <div>
+                <p>@Html.DisplayFor(modelItem => item.OPPORTUNITY_TITLE)</p>
+                <p>@Html.DisplayFor(modelItem => item.OPPORTUNITY_DESC)</p>
+                <p>@Html.DisplayNameFor(model => model.department.dept_name) :  @Html.DisplayFor(modelItem => item.department.dept_name) </p>
+                <p>@Html.DisplayNameFor(model => model.START_DATE) : @Html.DisplayFor(modelItem => item.START_DATE)</p>
+                <p>Contact Person : @Html.DisplayFor(modelItem => item.CONTACT_FN) @Html.DisplayFor(modelItem => item.CONTACT_LN) </p>
+                <p>@Html.DisplayNameFor(model => model.CONTACT_EMAIL):  @Html.DisplayFor(modelItem => item.CONTACT_EMAIL)</p>
+            </div>          
+        </li>
+        }
+    
+    </ul>
+    
+</div>
+
+

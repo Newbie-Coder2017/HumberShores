@@ -170,7 +170,12 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HOSPITAL_FEEDBACKController.cs" />
     <Compile Include="Controllers\HOSPITAL_VACANCYController.cs" />
+    <Compile Include="Controllers\opportunitiesController.cs" />
+    <Compile Include="Controllers\PassesController.cs" />
+    <Compile Include="Controllers\PassTypeController.cs" />
     <Compile Include="Controllers\site_usersController.cs" />
+    <Compile Include="Controllers\VehiclesController.cs" />
+    <Compile Include="Controllers\VolunteersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -185,10 +190,15 @@
     <Compile Include="Models\Buddy_Department.cs" />
     <Compile Include="Models\Buddy_employee.cs" />
     <Compile Include="Models\Buddy_Feedback.cs" />
+    <Compile Include="Models\Buddy_opportunities.cs" />
+    <Compile Include="Models\Buddy_pass.cs" />
+    <Compile Include="Models\Buddy_passtype.cs" />
     <Compile Include="Models\Buddy_Physician.cs" />
     <Compile Include="Models\Buddy_site_roles.cs" />
     <Compile Include="Models\Buddy_site_users.cs" />
     <Compile Include="Models\Buddy_Vacancy.cs" />
+    <Compile Include="Models\Buddy_vehicles.cs" />
+    <Compile Include="Models\Buddy_volunteers.cs" />
     <Compile Include="Models\City.cs">
       <DependentUpon>HumberShores.tt</DependentUpon>
     </Compile>
@@ -411,6 +421,31 @@
     <Content Include="Views\HOSPITAL_VACANCY\Details.cshtml" />
     <Content Include="Views\HOSPITAL_VACANCY\Edit.cshtml" />
     <Content Include="Views\HOSPITAL_VACANCY\Index.cshtml" />
+    <Content Include="Views\Volunteers\Create.cshtml" />
+    <Content Include="Views\Volunteers\Delete.cshtml" />
+    <Content Include="Views\Volunteers\Edit.cshtml" />
+    <Content Include="Views\Volunteers\Index.cshtml" />
+    <Content Include="Views\opportunities\Create.cshtml" />
+    <Content Include="Views\opportunities\Delete.cshtml" />
+    <Content Include="Views\opportunities\Edit.cshtml" />
+    <Content Include="Views\opportunities\Index.cshtml" />
+    <Content Include="Views\Passes\Create.cshtml" />
+    <Content Include="Views\Passes\Delete.cshtml" />
+    <Content Include="Views\Passes\Details.cshtml" />
+    <Content Include="Views\Passes\Edit.cshtml" />
+    <Content Include="Views\Passes\Index.cshtml" />
+    <Content Include="Views\passtype\Create.cshtml" />
+    <Content Include="Views\passtype\Delete.cshtml" />
+    <Content Include="Views\passtype\Details.cshtml" />
+    <Content Include="Views\passtype\Edit.cshtml" />
+    <Content Include="Views\passtype\Index.cshtml" />
+    <Content Include="Views\parking\index.cshtml" />
+    <Content Include="Views\Vehicles\Create.cshtml" />
+    <Content Include="Views\Vehicles\Delete.cshtml" />
+    <Content Include="Views\Vehicles\Details.cshtml" />
+    <Content Include="Views\Vehicles\Edit.cshtml" />
+    <Content Include="Views\Vehicles\Index.cshtml" />
+    <Content Include="Views\Volunteers\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

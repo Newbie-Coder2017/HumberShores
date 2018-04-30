@@ -1,0 +1,100 @@
+﻿@model HumberShores.Models.OPPORTUNITY
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_headFoot.cshtml";
+}
+
+<div class="container">
+    <h2>Admin</h2>
+    <h4>Update Opportunity</h4>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.OPPORTUNITY_ID)
+
+        <div class="row">
+            <div class="form-group col-lg-6">
+                @Html.LabelFor(model => model.DEPT_ID, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.DropDownList("DEPT_ID", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.DEPT_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-lg-6">
+                @Html.LabelFor(model => model.START_DATE, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.START_DATE, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.START_DATE, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-lg-6">
+                @Html.LabelFor(model => model.CONTACT_FN, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.CONTACT_FN, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CONTACT_FN, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-lg-6">
+                @Html.LabelFor(model => model.CONTACT_LN, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.CONTACT_LN, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CONTACT_LN, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-lg-6">
+                @Html.LabelFor(model => model.CONTACT_EMAIL, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.CONTACT_EMAIL, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CONTACT_EMAIL, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-lg-6">
+                @Html.LabelFor(model => model.OPPORTUNITY_TITLE, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.OPPORTUNITY_TITLE, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.OPPORTUNITY_TITLE, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-lg-12">
+                @Html.LabelFor(model => model.OPPORTUNITY_DESC, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.TextAreaFor(model => model.OPPORTUNITY_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.OPPORTUNITY_DESC, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group text-center">
+            <div class="text-center">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,37 @@
+﻿@model HumberShores.Models.PASS_TYPE
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container">
+    <h2>Details</h2>
+
+    <div>
+        <h4>PASS_TYPE</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.PASS_TYPE1)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PASS_TYPE1)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PRICE)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PRICE)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.TYPE_ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
+</div>

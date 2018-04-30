@@ -1,0 +1,35 @@
+﻿@model IEnumerable<HumberShores.Models.PASS>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <h2>My Passes</h2>
+
+    <p class="text-right">
+        @Html.ActionLink("Buy Pass", "Create")
+    </p>
+
+    <ul class="list-group">
+
+        @foreach (var item in Model)
+        {
+
+            <li class="list-group-item" id="opp_list">
+
+                <div class="pull-right">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PASS_ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PASS_ID })
+                </div>
+                <div>
+                    <p>@Html.DisplayFor(modelItem => item.site_users.user_first_name) @Html.DisplayFor(modelItem => item.site_users.user_last_name)</p>
+                    <p>@Html.DisplayNameFor(model => model.PASS_TYPE1.PASS_TYPE1) : @Html.DisplayFor(modelItem => item.PASS_TYPE1.PASS_TYPE1)</p>
+                    <p>@Html.DisplayNameFor(model => model.PURCHASE_DATE) : @Html.DisplayFor(modelItem => item.PURCHASE_DATE)</p>
+                    <p>@Html.DisplayNameFor(model => model.EXPIRY_DATE) : @Html.DisplayFor(model => item.EXPIRY_DATE)</p>
+                </div>
+            </li>
+         }
+    </ul>
+</div>
+

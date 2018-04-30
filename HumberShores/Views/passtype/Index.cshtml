@@ -1,0 +1,47 @@
+﻿@model IEnumerable<HumberShores.Models.PASS_TYPE>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <h2>Index</h2>
+    
+    <div class="pull-right">
+        <a href="@Url.Action("Index", "Passes")">View Buyers</a>
+    </div>
+    
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PASS_TYPE1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PRICE)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PASS_TYPE1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PRICE)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.TYPE_ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.TYPE_ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.TYPE_ID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
